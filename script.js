@@ -1,178 +1,105 @@
-const steps = [
+const questSteps = [
   {
-    kicker: "WORLD 1-1 · 沟通金币",
     title: "沟通访谈：能把人说清、把信息记准",
-    body:
-      "乡村振兴评估、土地调查、课程顾问和房产销售都要求高频沟通。我能耐心倾听、结构化提问，并按保密要求记录关键信息。",
-    hr: "对应 HR：候选人初筛、面试邀约、员工沟通记录。"
+    body: "调研、评估、课程顾问和销售经历，都训练了我面对不同人群的倾听、解释和记录能力。",
+    hr: "HR 结论：可支持候选人初筛、面试邀约和员工沟通记录。"
   },
   {
-    kicker: "WORLD 1-2 · 流程箱子",
-    title: "流程执行：能把琐碎事项推进完整",
-    body:
-      "做过问卷发放、回收、核验、样本抽取和标准化数据表整理，习惯按规则执行，减少遗漏和返工。",
-    hr: "对应 HR：简历归档、入职资料核验、培训签到与反馈回收。"
+    title: "流程执行：能把细碎任务做完整",
+    body: "问卷发放、回收、核验和样本抽取，让我习惯按流程推进，减少遗漏。",
+    hr: "HR 结论：可支持入职资料核验、招聘台账和培训签到反馈。"
   },
   {
-    kicker: "WORLD 1-3 · 数据金币",
-    title: "数据整理：能把零散信息变成台账",
-    body:
-      "掌握 Python、Pandas、SQL、PostgreSQL、MongoDB、Excel 和 PPT，能支持基础清洗、分类、统计和展示。",
-    hr: "对应 HR：招聘筛选表、出勤表、绩效台账、培训反馈表。"
+    title: "数据整理：能把信息做成台账",
+    body: "Python、Pandas、SQL、Excel、PostgreSQL、MongoDB 都能支持基础清洗和整理。",
+    hr: "HR 结论：可维护简历筛选表、出勤表、培训反馈表。"
   },
   {
-    kicker: "WORLD 1-4 · 通关旗帜",
     title: "岗位匹配：招聘支持 / 员工关系 / 培训助理",
-    body:
-      "我的优势不是单点技能，而是沟通、流程、数据和纪律性的组合。适合从 HR 助理岗位做起，提供稳定的信息整理与沟通协助。",
+    body: "沟通、流程、数据和纪律性组合在一起，适合从 HR 助理岗位稳定切入。",
     hr: "30 秒结论：能沟通、能执行、会整理、守流程。"
   }
 ];
 
-const avatar = document.querySelector("#avatar");
-const screen = document.querySelector("#card-screen");
+const runner = document.querySelector("#runner");
+const output = document.querySelector("#quest-output");
 const coinCount = document.querySelector("#coin-count");
 const stepCount = document.querySelector("#step-count");
 const startButton = document.querySelector("#start-run");
 const nextButton = document.querySelector("#next-step");
-const resetButton = document.querySelector("#reset-run");
-const scanHint = document.querySelector("#scan-hint");
-const finishFlag = document.querySelector("#finish-flag");
+const pipeFinish = document.querySelector("#pipe-finish");
 let currentStep = -1;
-let isAnimating = false;
+let running = false;
 
-function isMobileView() {
-  return window.matchMedia("(max-width: 760px)").matches;
-}
-
-function showScanHint() {
-  if (!scanHint || !isMobileView()) {
-    return;
-  }
-  if (localStorage.getItem("resume-scan-hint-dismissed") === "1") {
-    return;
-  }
-  scanHint.hidden = false;
-}
-
-function hideScanHint() {
-  if (!scanHint) {
-    return;
-  }
-  scanHint.hidden = true;
-  localStorage.setItem("resume-scan-hint-dismissed", "1");
-}
-
-function scrollToSection(selector) {
-  const node = document.querySelector(selector);
-  if (node) {
-    node.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
-
-function setRunnerPosition(stepIndex) {
-  const target = document.querySelector(`[data-step-target="${stepIndex}"]`);
-  if (!target) {
-    avatar.style.setProperty("--runner-x", "9%");
-    return;
-  }
-  const stageRect = document.querySelector(".stage").getBoundingClientRect();
-  const rect = target.getBoundingClientRect();
-  const x = ((rect.left + rect.width / 2 - stageRect.left) / stageRect.width) * 100;
-  avatar.style.setProperty("--runner-x", `${Math.max(7, Math.min(92, x))}%`);
+function setRunner(stepIndex) {
+  const positions = [14, 34, 54, 74];
+  runner.style.setProperty("--runner-left", `${positions[stepIndex] || 8}%`);
 }
 
 function renderStep(stepIndex) {
-  const step = steps[stepIndex];
-  screen.innerHTML = `
-    <p class="pixel-kicker">${step.kicker}</p>
+  const step = questSteps[stepIndex];
+  output.innerHTML = `
+    <p>WORLD 1-${stepIndex + 1}</p>
     <h2>${step.title}</h2>
-    <p>${step.body}</p>
+    <span>${step.body}</span>
     <strong>${step.hr}</strong>
   `;
   coinCount.textContent = String(stepIndex + 1);
   stepCount.textContent = String(stepIndex + 1);
-  document.querySelectorAll(".quick-cards [data-step]").forEach((button) => {
-    button.classList.toggle("is-active", Number(button.dataset.step) === stepIndex);
+}
+
+function markStep(stepIndex) {
+  document.querySelectorAll(`[data-step="${stepIndex}"]`).forEach((node) => {
+    node.classList.add("is-collected");
   });
-}
-
-function markCollected(stepIndex) {
-  const point = document.querySelector(`[data-step-target="${stepIndex}"]`);
-  point?.classList.add("is-collected");
-  point?.querySelector(".mystery-block")?.classList.add("is-hit");
-  point?.querySelector(".coin")?.classList.add("is-collected");
-  if (stepIndex === steps.length - 1) {
-    finishFlag.classList.add("is-raised");
+  document.querySelectorAll(".glass-card").forEach((card, index) => {
+    card.classList.toggle("is-current", index === stepIndex);
+  });
+  if (stepIndex === questSteps.length - 1) {
+    pipeFinish.classList.add("is-open");
   }
 }
 
-function playStep(stepIndex, options = {}) {
-  if (isAnimating || stepIndex < 0 || stepIndex >= steps.length) {
+function playStep(stepIndex) {
+  if (running || stepIndex < 0 || stepIndex >= questSteps.length) {
     return;
   }
-  isAnimating = true;
+  running = true;
   currentStep = stepIndex;
-  startButton.textContent = "继续通关";
-  setRunnerPosition(stepIndex);
-  avatar.classList.remove("jump", "bump");
+  startButton.textContent = "继续";
+  setRunner(stepIndex);
+  runner.classList.remove("jump", "bump");
+  window.setTimeout(() => runner.classList.add("jump"), 220);
   window.setTimeout(() => {
-    avatar.classList.add("jump");
-    markCollected(stepIndex);
+    markStep(stepIndex);
     renderStep(stepIndex);
-    if (options.scroll !== false) {
-      scrollToSection("#play");
-    }
-  }, 260);
-  window.setTimeout(() => {
-    avatar.classList.add("bump");
-    isAnimating = false;
-  }, 560);
+    runner.classList.add("bump");
+    running = false;
+  }, 620);
 }
 
-function playNext() {
-  const next = currentStep + 1;
-  if (next >= steps.length) {
-    playStep(steps.length - 1);
-    return;
-  }
+function nextStep() {
+  const next = Math.min(currentStep + 1, questSteps.length - 1);
   playStep(next);
 }
 
-function resetRun() {
+function resetGame() {
   currentStep = -1;
-  isAnimating = false;
-  avatar.style.setProperty("--runner-x", "9%");
-  avatar.classList.remove("jump", "bump");
-  finishFlag.classList.remove("is-raised");
+  running = false;
+  runner.style.setProperty("--runner-left", "8%");
   coinCount.textContent = "0";
   stepCount.textContent = "0";
-  document.querySelectorAll(".quest-point, .coin, .mystery-block").forEach((node) => {
-    node.classList.remove("is-collected", "is-hit");
+  pipeFinish.classList.remove("is-open");
+  document.querySelectorAll("[data-step], .glass-card").forEach((node) => {
+    node.classList.remove("is-collected", "is-current");
   });
-  document.querySelectorAll(".quick-cards [data-step]").forEach((button) => {
-    button.classList.remove("is-active");
-  });
-  startButton.textContent = "开始通关";
-  screen.innerHTML = `
-    <p class="pixel-kicker">MISSION START</p>
-    <h2>给 HR 的最短路径</h2>
-    <p>点一次“开始通关”，角色会按顺序走完 4 个箱子：沟通、流程、数据、岗位匹配。</p>
-  `;
 }
 
-startButton.addEventListener("click", playNext);
-nextButton.addEventListener("click", playNext);
-resetButton.addEventListener("click", resetRun);
+startButton.addEventListener("click", nextStep);
+nextButton.addEventListener("click", nextStep);
 
-document.querySelectorAll("[data-step]").forEach((button) => {
-  button.addEventListener("click", () => {
-    playStep(Number(button.dataset.step));
-  });
-});
-
-document.querySelectorAll("[data-scroll]").forEach((button) => {
-  button.addEventListener("click", () => scrollToSection(button.dataset.scroll));
+document.querySelectorAll("[data-step]").forEach((node) => {
+  node.addEventListener("click", () => playStep(Number(node.dataset.step)));
 });
 
 document.querySelectorAll("[data-copy]").forEach((button) => {
@@ -188,15 +115,26 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
   });
 });
 
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  { threshold: 0.16 }
+);
+
+document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowRight" || event.key === "Enter" || event.key === " ") {
-    playNext();
+  if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
+    nextStep();
   }
   if (event.key === "r" || event.key === "R") {
-    resetRun();
+    resetGame();
   }
 });
 
-document.querySelector("#dismiss-scan-hint")?.addEventListener("click", hideScanHint);
-showScanHint();
-resetRun();
+resetGame();

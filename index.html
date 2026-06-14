@@ -3,167 +3,136 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>胡志 | HR Quest</title>
+    <title>胡志 | Apple Style HR Quest</title>
     <meta
       name="description"
-      content="胡志的人力资源实习生候选人互动主页，以原创复古平台跳跃关卡呈现沟通、流程、数据与执行力。"
+      content="胡志的人力资源实习生个人简历网站，苹果风动态界面，保留原创复古平台游戏元素。"
     />
-    <meta property="og:title" content="胡志 | HR Quest" />
-    <meta property="og:description" content="扫码进入一关原创复古平台跳跃式简历。" />
-    <meta name="theme-color" content="#111923" />
+    <meta property="og:title" content="胡志 | Apple Style HR Quest" />
+    <meta property="og:description" content="苹果风动态简历，扫码体验移动端 HR Quest。" />
+    <meta property="og:image" content="assets/hero-dossier.png" />
+    <meta name="theme-color" content="#050505" />
     <meta name="format-detection" content="telephone=yes,email=yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="preload" href="assets/hero-dossier.png" as="image" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="scan-hint" id="scan-hint" hidden>
-      <p>扫码成功。点“开始通关”，每撞一个箱子出现一条简历亮点。</p>
-      <button type="button" id="dismiss-scan-hint" aria-label="关闭提示">知道了</button>
-    </div>
-
-    <main class="game-shell" id="top">
-      <header class="hud" aria-label="候选人状态栏">
-        <a class="hud-logo" href="#top">HZ</a>
-        <div>
-          <span>PLAYER</span>
-          <strong>胡志</strong>
-        </div>
-        <div>
-          <span>COINS</span>
-          <strong><b id="coin-count">0</b>/4</strong>
-        </div>
-        <div>
-          <span>STEP</span>
-          <strong><b id="step-count">0</b>/4</strong>
-        </div>
-        <a class="hud-link" href="assets/hu-zhi-resume.docx" download>RESUME</a>
-      </header>
-
-      <section class="stage" aria-label="胡志互动简历关卡">
-        <div class="skyline" aria-hidden="true">
-          <span class="cloud cloud-a"></span>
-          <span class="cloud cloud-b"></span>
-          <span class="hill hill-a"></span>
-          <span class="hill hill-b"></span>
-        </div>
-
-        <div class="intro-panel">
-          <p class="pixel-kicker">HR QUEST · 30 秒通关</p>
-          <h1>胡志</h1>
-          <p>人力资源实习生候选人</p>
-          <strong>按“开始通关”，角色会自动吃金币、撞箱子，并弹出下一条关键信息。</strong>
-        </div>
-
-        <div class="guide-board" aria-label="玩法引导">
-          <span>1 开始</span>
-          <span>2 吃金币</span>
-          <span>3 撞箱子</span>
-          <span>4 看亮点</span>
-        </div>
-
-        <ol class="quest-lane" aria-label="简历通关路线">
-          <li class="quest-point point-communication" data-step-target="0">
-            <button class="coin" type="button" data-step="0" aria-label="金币：沟通"></button>
-            <button class="mystery-block" type="button" data-step="0">?</button>
-            <span>沟通</span>
-          </li>
-          <li class="quest-point point-process" data-step-target="1">
-            <button class="coin" type="button" data-step="1" aria-label="金币：流程"></button>
-            <button class="mystery-block" type="button" data-step="1">?</button>
-            <span>流程</span>
-          </li>
-          <li class="quest-point point-data" data-step-target="2">
-            <button class="coin" type="button" data-step="2" aria-label="金币：数据"></button>
-            <button class="mystery-block" type="button" data-step="2">?</button>
-            <span>数据</span>
-          </li>
-          <li class="quest-point point-fit" data-step-target="3">
-            <button class="coin" type="button" data-step="3" aria-label="金币：匹配"></button>
-            <button class="mystery-block" type="button" data-step="3">?</button>
-            <span>匹配</span>
-          </li>
-        </ol>
-
-        <div class="flag" id="finish-flag" aria-hidden="true">
-          <span></span>
-        </div>
-
-        <div class="avatar" id="avatar" aria-label="像素候选人">
-          <span class="cap"></span>
-          <span class="face"></span>
-          <span class="body"></span>
-          <span class="feet"></span>
-        </div>
-
-        <div class="ground" aria-hidden="true"></div>
-      </section>
-
-      <section class="play-panel" id="play" aria-label="通关控制">
-        <div class="screen" id="card-screen" aria-live="polite">
-          <p class="pixel-kicker">MISSION START</p>
-          <h2>给 HR 的最短路径</h2>
-          <p>
-            不需要研究页面怎么玩。点一次“开始通关”，角色会按顺序走完 4 个箱子：
-            沟通、流程、数据、岗位匹配。
-          </p>
-        </div>
-        <div class="play-controls">
-          <button class="primary-action" type="button" id="start-run">开始通关</button>
-          <button type="button" id="next-step">下一步</button>
-          <button type="button" id="reset-run">重来</button>
-        </div>
-      </section>
-
-      <nav class="quick-cards" aria-label="直接查看简历亮点">
-        <button type="button" data-step="0">沟通访谈</button>
-        <button type="button" data-step="1">流程执行</button>
-        <button type="button" data-step="2">数据整理</button>
-        <button type="button" data-step="3">岗位匹配</button>
+    <main class="page-shell" id="top">
+      <nav class="top-nav" aria-label="主页导航">
+        <a href="#top" class="mark">HZ</a>
+        <span>HR Quest</span>
+        <a href="assets/hu-zhi-resume.docx" download>简历</a>
       </nav>
 
-      <section class="world-map" id="experience" aria-label="经历地图">
-        <article>
-          <span>2024-2027</span>
-          <h3>西南大学 · 农村发展硕士</h3>
-          <p>社会调查、农村公共管理、农业经济学、发展理论与实践。</p>
+      <section class="hero-section reveal">
+        <img class="ambient-art" src="assets/hero-dossier.png" alt="抽象人才档案系统背景" />
+        <p class="eyebrow">Apple style · Original platformer elements</p>
+        <h1>胡志</h1>
+        <p class="hero-subtitle">人力资源实习生候选人</p>
+        <p class="hero-copy">
+          把调研访谈、流程执行和数据整理能力，做成一个手机上 30 秒可通关的动态简历。
+        </p>
+      </section>
+
+      <section class="phone-stage reveal" aria-label="手机端动态简历体验">
+        <div class="phone-frame">
+          <div class="phone-island"></div>
+          <div class="game-card">
+            <header class="game-status">
+              <span>COINS <b id="coin-count">0</b>/4</span>
+              <span>STEP <b id="step-count">0</b>/4</span>
+            </header>
+
+            <div class="mini-world" aria-label="简历小游戏路线">
+              <div class="sun"></div>
+              <div class="cloud c1"></div>
+              <div class="cloud c2"></div>
+              <div class="runner" id="runner" aria-label="像素候选人">
+                <span></span>
+              </div>
+              <div class="route">
+                <button class="coin-dot" data-step="0" aria-label="金币：沟通"></button>
+                <button class="box-dot" data-step="0" aria-label="箱子：沟通">?</button>
+                <button class="coin-dot" data-step="1" aria-label="金币：流程"></button>
+                <button class="box-dot" data-step="1" aria-label="箱子：流程">?</button>
+                <button class="coin-dot" data-step="2" aria-label="金币：数据"></button>
+                <button class="box-dot" data-step="2" aria-label="箱子：数据">?</button>
+                <button class="coin-dot" data-step="3" aria-label="金币：匹配"></button>
+                <button class="box-dot" data-step="3" aria-label="箱子：匹配">?</button>
+                <div class="pipe-finish" id="pipe-finish"><span></span></div>
+              </div>
+              <div class="ground"></div>
+            </div>
+
+            <article class="quest-output" id="quest-output" aria-live="polite">
+              <p>MISSION START</p>
+              <h2>点一下开始，角色会自动吃金币、撞箱子。</h2>
+              <strong>每一步只出现一个 HR 关心的结论，不让面试官费脑子。</strong>
+            </article>
+
+            <div class="quest-actions">
+              <button type="button" id="start-run">开始体验</button>
+              <button type="button" id="next-step">下一步</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="apple-cards" id="cards" aria-label="核心能力卡片">
+        <article class="glass-card reveal">
+          <span>01</span>
+          <h2>沟通访谈</h2>
+          <p>能面对基层干部、农户、家长和客户，耐心说明问题、倾听需求并记录关键信息。</p>
         </article>
-        <article>
-          <span>2024-2025</span>
-          <h3>调研与评估项目</h3>
-          <p>入户沟通、结构化访谈、问卷发放、回收核验和样本信息采集。</p>
+        <article class="glass-card reveal">
+          <span>02</span>
+          <h2>流程执行</h2>
+          <p>做过问卷发放、回收、核验和样本抽取，适合招聘流程跟进和资料归档。</p>
         </article>
-        <article>
-          <span>2024</span>
-          <h3>网易有道 · 课程顾问</h3>
-          <p>高频沟通家长用户，识别需求并整理服务反馈。</p>
+        <article class="glass-card reveal">
+          <span>03</span>
+          <h2>数据整理</h2>
+          <p>掌握 Python、Pandas、SQL、Excel、PostgreSQL、MongoDB，能维护招聘与培训台账。</p>
         </article>
-        <article>
-          <span>2023-2024</span>
-          <h3>四川链家 · 房产销售</h3>
-          <p>客户接待、需求洞察、关系维护和复杂决策沟通。</p>
+        <article class="glass-card reveal">
+          <span>04</span>
+          <h2>岗位匹配</h2>
+          <p>适合招聘支持、员工关系、培训助理，从细致执行和信息整理开始提供稳定支持。</p>
         </article>
-        <article>
-          <span>2017-2019</span>
-          <h3>中国人民解放军 · 战士</h3>
-          <p>纪律性、抗压能力、执行力和稳定的任务完成意识。</p>
-        </article>
+      </section>
+
+      <section class="timeline-section reveal" id="experience">
+        <p class="eyebrow">Experience map</p>
+        <h2>经历路线</h2>
+        <div class="timeline">
+          <article>
+            <time>2024 - 2027</time>
+            <h3>西南大学 · 农村发展硕士</h3>
+          </article>
+          <article>
+            <time>2024 - 2025</time>
+            <h3>调研与第三方评估 · 调查员 / 评估员</h3>
+          </article>
+          <article>
+            <time>2024</time>
+            <h3>网易有道 · 课程顾问</h3>
+          </article>
+          <article>
+            <time>2023 - 2024</time>
+            <h3>四川链家 · 房产销售</h3>
+          </article>
+          <article>
+            <time>2017 - 2019</time>
+            <h3>中国人民解放军 · 战士</h3>
+          </article>
+        </div>
       </section>
     </main>
 
-    <nav class="mobile-bottom-bar" aria-label="手机底部导航">
-      <button type="button" data-scroll="#top">顶部</button>
-      <button type="button" data-scroll="#play">通关</button>
-      <button type="button" data-scroll="#experience">经历</button>
-      <button type="button" data-scroll="#contact">联系</button>
-    </nav>
-
-    <footer class="site-footer" id="contact">
-      <span>Original retro platformer interface · No official game assets used</span>
-      <div>
-        <button type="button" data-copy="huzhi2024@163.com">复制邮箱</button>
-        <button type="button" data-copy="19982081744">复制电话</button>
-        <a href="assets/hu-zhi-resume.docx" download>下载简历</a>
-      </div>
+    <footer class="contact-bar" id="contact">
+      <button type="button" data-copy="huzhi2024@163.com">复制邮箱</button>
+      <button type="button" data-copy="19982081744">复制电话</button>
+      <a href="assets/hu-zhi-resume.docx" download>下载简历</a>
       <p id="copy-status"></p>
     </footer>
 
