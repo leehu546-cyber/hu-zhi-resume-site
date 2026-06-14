@@ -6,27 +6,35 @@
     <title>胡志 | HR Quest</title>
     <meta
       name="description"
-      content="胡志的人力资源实习生候选人互动主页，以原创复古平台跳跃界面呈现招聘支持、沟通访谈、数据整理与执行力。"
+      content="胡志的人力资源实习生候选人互动主页，以原创复古平台跳跃关卡呈现沟通、流程、数据与执行力。"
     />
     <meta property="og:title" content="胡志 | HR Quest" />
     <meta property="og:description" content="扫码进入一关原创复古平台跳跃式简历。" />
+    <meta name="theme-color" content="#111923" />
+    <meta name="format-detection" content="telephone=yes,email=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scan-hint" id="scan-hint" hidden>
+      <p>扫码成功。点“开始通关”，每撞一个箱子出现一条简历亮点。</p>
+      <button type="button" id="dismiss-scan-hint" aria-label="关闭提示">知道了</button>
+    </div>
+
     <main class="game-shell" id="top">
       <header class="hud" aria-label="候选人状态栏">
         <a class="hud-logo" href="#top">HZ</a>
         <div>
-          <span>ROLE</span>
-          <strong>HR INTERN</strong>
+          <span>PLAYER</span>
+          <strong>胡志</strong>
         </div>
         <div>
           <span>COINS</span>
-          <strong id="coin-count">00</strong>
+          <strong><b id="coin-count">0</b>/4</strong>
         </div>
         <div>
-          <span>LEVEL</span>
-          <strong>CAREER-1</strong>
+          <span>STEP</span>
+          <strong><b id="step-count">0</b>/4</strong>
         </div>
         <a class="hud-link" href="assets/hu-zhi-resume.docx" download>RESUME</a>
       </header>
@@ -40,28 +48,45 @@
         </div>
 
         <div class="intro-panel">
-          <p class="pixel-kicker">PLAYER 1</p>
+          <p class="pixel-kicker">HR QUEST · 30 秒通关</p>
           <h1>胡志</h1>
           <p>人力资源实习生候选人</p>
-          <strong>沟通访谈 · 流程执行 · 数据整理 · 纪律抗压</strong>
+          <strong>按“开始通关”，角色会自动吃金币、撞箱子，并弹出下一条关键信息。</strong>
         </div>
 
-        <button class="mystery-block block-communication" data-card="communication" type="button">
-          ?
-        </button>
-        <button class="mystery-block block-process" data-card="process" type="button">?</button>
-        <button class="mystery-block block-data" data-card="data" type="button">?</button>
-        <button class="pipe pipe-fit" data-card="fit" type="button">
-          <span></span>
-        </button>
-        <button class="pipe pipe-contact" data-card="contact" type="button">
-          <span></span>
-        </button>
+        <div class="guide-board" aria-label="玩法引导">
+          <span>1 开始</span>
+          <span>2 吃金币</span>
+          <span>3 撞箱子</span>
+          <span>4 看亮点</span>
+        </div>
 
-        <div class="coin coin-one" aria-hidden="true"></div>
-        <div class="coin coin-two" aria-hidden="true"></div>
-        <div class="coin coin-three" aria-hidden="true"></div>
-        <div class="coin coin-four" aria-hidden="true"></div>
+        <ol class="quest-lane" aria-label="简历通关路线">
+          <li class="quest-point point-communication" data-step-target="0">
+            <button class="coin" type="button" data-step="0" aria-label="金币：沟通"></button>
+            <button class="mystery-block" type="button" data-step="0">?</button>
+            <span>沟通</span>
+          </li>
+          <li class="quest-point point-process" data-step-target="1">
+            <button class="coin" type="button" data-step="1" aria-label="金币：流程"></button>
+            <button class="mystery-block" type="button" data-step="1">?</button>
+            <span>流程</span>
+          </li>
+          <li class="quest-point point-data" data-step-target="2">
+            <button class="coin" type="button" data-step="2" aria-label="金币：数据"></button>
+            <button class="mystery-block" type="button" data-step="2">?</button>
+            <span>数据</span>
+          </li>
+          <li class="quest-point point-fit" data-step-target="3">
+            <button class="coin" type="button" data-step="3" aria-label="金币：匹配"></button>
+            <button class="mystery-block" type="button" data-step="3">?</button>
+            <span>匹配</span>
+          </li>
+        </ol>
+
+        <div class="flag" id="finish-flag" aria-hidden="true">
+          <span></span>
+        </div>
 
         <div class="avatar" id="avatar" aria-label="像素候选人">
           <span class="cap"></span>
@@ -73,24 +98,30 @@
         <div class="ground" aria-hidden="true"></div>
       </section>
 
-      <section class="console-panel" aria-live="polite">
-        <div class="screen" id="card-screen">
+      <section class="play-panel" id="play" aria-label="通关控制">
+        <div class="screen" id="card-screen" aria-live="polite">
           <p class="pixel-kicker">MISSION START</p>
-          <h2>通关目标：让面试官快速看懂我适合 HR 支持岗位</h2>
+          <h2>给 HR 的最短路径</h2>
           <p>
-            这不是传统简历页，而是一张可互动的候选人关卡地图。每个砖块对应一项可迁移能力，
-            每个管道通往岗位匹配或联系方式。
+            不需要研究页面怎么玩。点一次“开始通关”，角色会按顺序走完 4 个箱子：
+            沟通、流程、数据、岗位匹配。
           </p>
         </div>
-        <div class="controls" aria-label="关卡控制">
-          <button type="button" data-move="-1" aria-label="向左移动">←</button>
-          <button type="button" data-jump aria-label="跳跃">↑</button>
-          <button type="button" data-move="1" aria-label="向右移动">→</button>
-          <button type="button" data-open-active>OPEN</button>
+        <div class="play-controls">
+          <button class="primary-action" type="button" id="start-run">开始通关</button>
+          <button type="button" id="next-step">下一步</button>
+          <button type="button" id="reset-run">重来</button>
         </div>
       </section>
 
-      <section class="world-map" aria-label="经历地图">
+      <nav class="quick-cards" aria-label="直接查看简历亮点">
+        <button type="button" data-step="0">沟通访谈</button>
+        <button type="button" data-step="1">流程执行</button>
+        <button type="button" data-step="2">数据整理</button>
+        <button type="button" data-step="3">岗位匹配</button>
+      </nav>
+
+      <section class="world-map" id="experience" aria-label="经历地图">
         <article>
           <span>2024-2027</span>
           <h3>西南大学 · 农村发展硕士</h3>
@@ -119,11 +150,19 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <nav class="mobile-bottom-bar" aria-label="手机底部导航">
+      <button type="button" data-scroll="#top">顶部</button>
+      <button type="button" data-scroll="#play">通关</button>
+      <button type="button" data-scroll="#experience">经历</button>
+      <button type="button" data-scroll="#contact">联系</button>
+    </nav>
+
+    <footer class="site-footer" id="contact">
       <span>Original retro platformer interface · No official game assets used</span>
       <div>
         <button type="button" data-copy="huzhi2024@163.com">复制邮箱</button>
         <button type="button" data-copy="19982081744">复制电话</button>
+        <a href="assets/hu-zhi-resume.docx" download>下载简历</a>
       </div>
       <p id="copy-status"></p>
     </footer>
