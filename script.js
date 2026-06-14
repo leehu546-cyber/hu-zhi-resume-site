@@ -1,44 +1,105 @@
-const roleContent = {
-  recruiting: {
-    kicker: "招聘支持",
-    title: "能把候选人沟通和信息跟进做细",
+const cards = {
+  communication: {
+    kicker: "ABILITY BLOCK 01",
+    title: "沟通访谈：能把人说清、把信息记准",
     body:
-      "高频访谈、客户接待和课程顾问经历，让我习惯先听清需求，再按流程记录、分类和反馈。这可以迁移到简历初筛、面试邀约、候选人信息归档和招聘台账维护。"
+      "在乡村振兴评估、土地利用调查、课程顾问和房产销售中，我持续面对不同背景的人群。经验沉淀为耐心倾听、结构化提问、保密记录和需求判断。"
   },
-  relations: {
-    kicker: "员工关系",
-    title: "能在多元人群中保持耐心、边界和保密意识",
+  process: {
+    kicker: "ABILITY BLOCK 02",
+    title: "流程执行：适合招聘筛选、邀约和入职跟进",
     body:
-      "在基层调研和第三方评估中，我需要面对不同年龄、职业和表达习惯的人群，按中立、保密、准确记录的原则沟通。这类经验适合员工沟通、信息收集和问题反馈。"
-  },
-  training: {
-    kicker: "培训助理",
-    title: "能把材料、反馈和执行流程整理清楚",
-    body:
-      "课程顾问经历让我熟悉学习服务场景，也训练了我把用户反馈归纳为共性问题的能力。放到培训支持中，可以协助培训通知、签到、反馈收集和材料归档。"
+      "我做过问卷发放、回收、核验、样本抽取和标准化信息整理，能按照既定规则把琐碎任务推进完整，减少遗漏和返工。"
   },
   data: {
-    kicker: "数据整理",
-    title: "能用工具把零散信息变成可查看的台账",
+    kicker: "ABILITY BLOCK 03",
+    title: "数据整理：能把零散信息做成台账",
     body:
-      "我掌握 Python、SQL、Excel、PostgreSQL 和 MongoDB，能进行基础清洗、分类和汇总。适合维护招聘简历筛选表、出勤表、绩效台账和培训反馈数据。"
+      "掌握 Python、Pandas、SQL、PostgreSQL、MongoDB、Excel 和 PPT，能支持简历筛选表、出勤表、培训反馈表等基础数据维护。"
+  },
+  fit: {
+    kicker: "PIPE TO ROLE FIT",
+    title: "岗位匹配：招聘支持 / 员工关系 / 培训助理",
+    body:
+      "调研访谈经验对应候选人初筛沟通；问卷核验经验对应简历信息归档；课程顾问经验对应员工和候选人需求识别；军旅经历对应纪律性与抗压执行。"
+  },
+  contact: {
+    kicker: "PIPE TO CONTACT",
+    title: "面试沟通入口",
+    body:
+      "邮箱：huzhi2024@163.com。电话可通过页面底部按钮复制。也可以直接下载 Word 简历，查看完整教育背景、实践经历和技能说明。"
   }
 };
 
-const tabs = document.querySelectorAll(".role-tab");
-const roleCard = document.querySelector("#role-card");
+const avatar = document.querySelector("#avatar");
+const screen = document.querySelector("#card-screen");
+const coinCount = document.querySelector("#coin-count");
+const targets = [...document.querySelectorAll("[data-card]")];
+let avatarPosition = 12;
+let activeIndex = 0;
+let coins = 0;
 
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((item) => item.classList.remove("active"));
-    tab.classList.add("active");
-    const content = roleContent[tab.dataset.role];
-    roleCard.innerHTML = `
-      <p class="role-kicker">${content.kicker}</p>
-      <h3>${content.title}</h3>
-      <p>${content.body}</p>
-    `;
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function renderCard(key) {
+  const card = cards[key];
+  screen.innerHTML = `
+    <p class="pixel-kicker">${card.kicker}</p>
+    <h2>${card.title}</h2>
+    <p>${card.body}</p>
+  `;
+  coins = clamp(coins + 1, 0, 99);
+  coinCount.textContent = String(coins).padStart(2, "0");
+  avatar.classList.remove("jump");
+  window.requestAnimationFrame(() => avatar.classList.add("jump"));
+}
+
+function setActiveTarget(index) {
+  activeIndex = (index + targets.length) % targets.length;
+  targets.forEach((target) => target.classList.remove("active"));
+  const target = targets[activeIndex];
+  target.classList.add("active");
+  const rect = target.getBoundingClientRect();
+  const stageRect = document.querySelector(".stage").getBoundingClientRect();
+  const percent = ((rect.left + rect.width / 2 - stageRect.left) / stageRect.width) * 100;
+  avatarPosition = clamp(percent, 8, 92);
+  avatar.style.setProperty("--avatar-x", `${avatarPosition}%`);
+}
+
+targets.forEach((target, index) => {
+  target.addEventListener("click", () => {
+    setActiveTarget(index);
+    renderCard(target.dataset.card);
   });
+});
+
+document.querySelectorAll("[data-move]").forEach((button) => {
+  button.addEventListener("click", () => {
+    setActiveTarget(activeIndex + Number(button.dataset.move));
+  });
+});
+
+document.querySelector("[data-jump]").addEventListener("click", () => {
+  avatar.classList.remove("jump");
+  window.requestAnimationFrame(() => avatar.classList.add("jump"));
+});
+
+document.querySelector("[data-open-active]").addEventListener("click", () => {
+  renderCard(targets[activeIndex].dataset.card);
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") {
+    setActiveTarget(activeIndex - 1);
+  }
+  if (event.key === "ArrowRight") {
+    setActiveTarget(activeIndex + 1);
+  }
+  if (event.key === "ArrowUp" || event.key === "Enter" || event.key === " ") {
+    renderCard(targets[activeIndex].dataset.card);
+  }
 });
 
 document.querySelectorAll("[data-copy]").forEach((button) => {
@@ -47,9 +108,11 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
     const status = document.querySelector("#copy-status");
     try {
       await navigator.clipboard.writeText(value);
-      status.textContent = "已复制，可以直接粘贴给面试官。";
+      status.textContent = "COPY OK";
     } catch {
       status.textContent = value;
     }
   });
 });
+
+setActiveTarget(0);
