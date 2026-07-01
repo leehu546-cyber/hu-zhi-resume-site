@@ -1,141 +1,414 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>胡志 | Apple Style HR Quest</title>
+    <meta charset="UTF-8" />
     <meta
-      name="description"
-      content="胡志的人力资源实习生个人简历网站，苹果风动态界面，保留原创复古平台游戏元素。"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta property="og:title" content="胡志 | Apple Style HR Quest" />
-    <meta property="og:description" content="苹果风动态简历，扫码体验移动端 HR Quest。" />
-    <meta property="og:image" content="assets/hero-dossier.png" />
-    <meta name="theme-color" content="#050505" />
-    <meta name="format-detection" content="telephone=yes,email=yes" />
-    <link rel="preload" href="assets/hero-dossier.png" as="image" />
-    <link rel="stylesheet" href="styles.css?v=apple-20260615-1" />
+    <title>leehu546-cyber | AI Coding Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page-shell" id="top">
-      <nav class="top-nav" aria-label="主页导航">
-        <a href="#top" class="mark">HZ</a>
-        <span>HR Quest</span>
-        <a href="assets/hu-zhi-resume.docx" download>简历</a>
+    <header class="site-header" data-reveal>
+      <a class="brand" href="#top">leehu546-cyber</a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#identity">特点</a>
+        <a href="#system">Skill</a>
+        <a href="#project">项目</a>
+        <a href="#creation">创作</a>
+        <a href="#report">报告</a>
       </nav>
+    </header>
 
-      <section class="hero-section reveal">
-        <img class="ambient-art" src="assets/hero-dossier.png" alt="抽象人才档案系统背景" />
-        <p class="eyebrow">Apple style · Original platformer elements</p>
-        <h1>胡志</h1>
-        <p class="hero-subtitle">人力资源实习生候选人</p>
-        <p class="hero-copy">
-          把调研访谈、流程执行和数据整理能力，做成一个手机上 30 秒可通关的动态简历。
-        </p>
+    <nav class="mobile-nav" aria-label="移动端快捷导航">
+      <a href="#top" data-nav="top">首页</a>
+      <a href="#identity" data-nav="identity">特点</a>
+      <a href="#system" data-nav="system">Skill</a>
+      <a href="#project" data-nav="project">项目</a>
+      <a href="#creation" data-nav="creation">创作</a>
+      <a href="#report" data-nav="report">报告</a>
+    </nav>
+
+    <main id="top">
+      <section class="section hero apple-panel" data-section>
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">个人简历 · AI CODING</p>
+          <h1>我不是只会用 AI，<br />我是把 AI 变成工作系统。</h1>
+          <p class="hero-text">
+            一年多 AI Coding 实战，把本地自动化、数据分析、报告撰写、长篇小说和 AI 短剧制作沉淀成一套可复用的技能方法。
+          </p>
+        </div>
+
+        <figure class="section-illustration hero-illustration" data-reveal>
+          <img
+            src="assets/portfolio-illustrations/01-hero-ai-system.png"
+            alt="橙线风格概念图：小橙把杂乱的线条整理成可执行的工作系统"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="hero-metrics" data-reveal aria-label="个人亮点">
+          <div>
+            <strong>1 年+</strong>
+            <span>AI Coding 实战</span>
+          </div>
+          <div>
+            <strong>5 部</strong>
+            <span>10 万字级 AI 小说</span>
+          </div>
+          <div>
+            <strong>1 部</strong>
+            <span>《合租40》AI 短剧</span>
+          </div>
+          <div>
+            <strong>Skill</strong>
+            <span>把经验沉淀成流程</span>
+          </div>
+        </div>
+
+        <div class="hero-strip" data-reveal>
+          <span>AI Coding</span>
+          <span>微信控制电脑</span>
+          <span>数据分析</span>
+          <span>报告撰写</span>
+          <span>AI 内容创作</span>
+        </div>
+
+        <a class="scroll-cue" href="#identity" aria-label="继续向下">
+          <span>继续向下</span>
+          <i data-lucide="chevron-down"></i>
+        </a>
       </section>
 
-      <section class="phone-stage reveal" aria-label="手机端动态简历体验">
-        <div class="phone-frame">
-          <div class="phone-island"></div>
-          <div class="game-card">
-            <header class="game-status">
-              <span>COINS <b id="coin-count">0</b>/4</span>
-              <span>STEP <b id="step-count">0</b>/4</span>
-            </header>
+      <section class="section identity-section" id="identity" data-section>
+        <div class="section-kicker" data-reveal>
+          <p class="eyebrow">我的特点</p>
+          <h2>我擅长把模糊需求，<br />变成可执行路径。</h2>
+        </div>
 
-            <div class="mini-world" aria-label="简历小游戏路线">
-              <div class="sun"></div>
-              <div class="cloud c1"></div>
-              <div class="cloud c2"></div>
-              <div class="runner" id="runner" aria-label="像素候选人">
-                <span></span>
-              </div>
-              <div class="route">
-                <button class="coin-dot" data-step="0" aria-label="金币：沟通"></button>
-                <button class="box-dot" data-step="0" aria-label="箱子：沟通">?</button>
-                <button class="coin-dot" data-step="1" aria-label="金币：流程"></button>
-                <button class="box-dot" data-step="1" aria-label="箱子：流程">?</button>
-                <button class="coin-dot" data-step="2" aria-label="金币：数据"></button>
-                <button class="box-dot" data-step="2" aria-label="箱子：数据">?</button>
-                <button class="coin-dot" data-step="3" aria-label="金币：匹配"></button>
-                <button class="box-dot" data-step="3" aria-label="箱子：匹配">?</button>
-                <div class="pipe-finish" id="pipe-finish"><span></span></div>
-              </div>
-              <div class="ground"></div>
-            </div>
+        <figure class="section-illustration" data-reveal>
+          <img
+            src="assets/portfolio-illustrations/02-identity-fuzzy-to-path.png"
+            alt="橙线风格概念图：小橙从模糊云团指向清晰的三步路径"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        </figure>
 
-            <article class="quest-output" id="quest-output" aria-live="polite">
-              <p>MISSION START</p>
-              <h2>点一下开始，角色会自动吃金币、撞箱子。</h2>
-              <strong>每一步只出现一个 HR 关心的结论，不让面试官费脑子。</strong>
-            </article>
+        <div class="identity-grid" data-reveal>
+          <article class="identity-card dark">
+            <span data-lucide="workflow"></span>
+            <h3>流程化思维</h3>
+            <p>不是临时问 AI，而是把任务拆成固定步骤、脚本、Skill 和交付标准。</p>
+          </article>
+          <article class="identity-card">
+            <span data-lucide="brain-circuit"></span>
+            <h3>Agent 落地能力</h3>
+            <p>让 AI 理解任务、选择工具、操作本地环境，并把结果返回给真实用户。</p>
+          </article>
+          <article class="identity-card">
+            <span data-lucide="table-2"></span>
+            <h3>数据到判断</h3>
+            <p>能处理表格、公式、核对、趋势和结论，让数据服务决策，而不是停在截图。</p>
+          </article>
+          <article class="identity-card">
+            <span data-lucide="file-check-2"></span>
+            <h3>材料到报告</h3>
+            <p>能把散乱素材整理为结构清晰、证据可追溯、适合交付的正式报告。</p>
+          </article>
+        </div>
+      </section>
 
-            <div class="quest-actions">
-              <button type="button" id="start-run">开始体验</button>
-              <button type="button" id="next-step">下一步</button>
-            </div>
+      <section class="section system-section" id="system" data-section>
+        <div class="system-copy" data-reveal>
+          <p class="eyebrow">SKILL OPERATING SYSTEM</p>
+          <h2>我的能力不是散点，<br />而是一套工作系统。</h2>
+          <p>
+            我会把常见任务沉淀成 Skill：什么时候触发、读什么材料、跑什么脚本、生成什么结果、失败怎么处理。这样每次交付都会变得更快、更稳、更可复用。
+          </p>
+        </div>
+
+        <figure class="section-illustration system-illustration" data-reveal>
+          <img
+            src="assets/portfolio-illustrations/03-system-skill-os.png"
+            alt="橙线风格概念图：小橙把最后一个能力节点推入连续的工作系统"
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        </figure>
+
+        <div class="system-map" data-reveal>
+          <div class="system-node active">
+            <span data-lucide="code-2"></span>
+            <strong>AI Coding</strong>
+            <small>构建、调试、交付</small>
+          </div>
+          <div class="system-node">
+            <span data-lucide="message-circle"></span>
+            <strong>微信控制电脑</strong>
+            <small>手机发指令，本地执行</small>
+          </div>
+          <div class="system-node">
+            <span data-lucide="bar-chart-3"></span>
+            <strong>数据分析</strong>
+            <small>清洗、核对、洞察</small>
+          </div>
+          <div class="system-node">
+            <span data-lucide="file-text"></span>
+            <strong>报告撰写</strong>
+            <small>结构、证据、成稿</small>
+          </div>
+          <div class="system-node">
+            <span data-lucide="film"></span>
+            <strong>AI 内容创作</strong>
+            <small>小说、短剧、分镜</small>
           </div>
         </div>
       </section>
 
-      <section class="apple-cards" id="cards" aria-label="核心能力卡片">
-        <article class="glass-card reveal">
-          <span>01</span>
-          <h2>沟通访谈</h2>
-          <p>能面对基层干部、农户、家长和客户，耐心说明问题、倾听需求并记录关键信息。</p>
-        </article>
-        <article class="glass-card reveal">
-          <span>02</span>
-          <h2>流程执行</h2>
-          <p>做过问卷发放、回收、核验和样本抽取，适合招聘流程跟进和资料归档。</p>
-        </article>
-        <article class="glass-card reveal">
-          <span>03</span>
-          <h2>数据整理</h2>
-          <p>掌握 Python、Pandas、SQL、Excel、PostgreSQL、MongoDB，能维护招聘与培训台账。</p>
-        </article>
-        <article class="glass-card reveal">
-          <span>04</span>
-          <h2>岗位匹配</h2>
-          <p>适合招聘支持、员工关系、培训助理，从细致执行和信息整理开始提供稳定支持。</p>
-        </article>
+      <section class="section project-section" id="project" data-section>
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">代表项目 · 能力证据</p>
+          <h2>wechat-pc-remote</h2>
+          <p>
+            一个用微信远程控制 Windows 电脑的 AI Coding 项目。它证明我能把手机入口、Agent、Skill、PowerShell 脚本和本地自动化串成真实可用的系统。
+          </p>
+        </div>
+
+        <div class="demo-shell" data-reveal>
+          <div class="demo-column commands">
+            <div class="column-title">
+              <span>1</span>
+              <strong>微信指令</strong>
+            </div>
+            <div class="wechat-panel" aria-label="微信命令示例">
+              <div class="bubble incoming">帮我看一下桌面，并总结今天的待办事项</div>
+              <div class="bubble outgoing">打开 C:\Projects 文件夹</div>
+              <div class="bubble incoming">查找过去 7 天的销售数据，生成趋势图</div>
+              <div class="bubble outgoing">把这份数据整理成表格并导出 Excel</div>
+              <div class="bubble incoming">写一份今日工作总结</div>
+              <div class="message-bar">
+                <span data-lucide="mic"></span>
+                <div></div>
+                <span data-lucide="plus"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-column reasoning">
+            <div class="column-title">
+              <span>2</span>
+              <strong>Agent 推理</strong>
+            </div>
+            <ol class="timeline" aria-label="Agent 执行过程">
+              <li class="is-done">
+                <b>理解任务</b>
+                <small>识别意图：查看桌面并总结待办</small>
+              </li>
+              <li class="is-done">
+                <b>选择技能</b>
+                <small>调用截图、OCR、文件和报告相关 Skill</small>
+              </li>
+              <li class="is-done">
+                <b>执行动作</b>
+                <small>PowerShell 固定脚本完成本地操作</small>
+              </li>
+              <li class="is-current">
+                <b>生成回复</b>
+                <small>把结果整理成用户能直接看的中文回复</small>
+              </li>
+            </ol>
+          </div>
+
+          <div class="demo-column output">
+            <div class="column-title">
+              <span>3</span>
+              <strong>Windows 输出</strong>
+            </div>
+            <div class="output-panel">
+              <div class="tabs" role="tablist" aria-label="输出类型">
+                <button class="tab is-active" data-tab="screenshot" role="tab">截图</button>
+                <button class="tab" data-tab="ocr" role="tab">OCR 文本</button>
+                <button class="tab" data-tab="report" role="tab">报告</button>
+              </div>
+              <div class="tab-panel is-active" data-panel="screenshot">
+                <img src="assets/windows-output.png" alt="Windows 自动化输出预览" />
+              </div>
+              <div class="tab-panel" data-panel="ocr">
+                <ul class="result-list">
+                  <li>桌面包含项目评审材料、销售数据和今日总结草稿。</li>
+                  <li>最新文件：sales_trend_7days.xlsx。</li>
+                  <li>需要跟进：团队周会 15:00，报告初稿校对。</li>
+                  <li>建议：先整理数据，再输出一页结论。</li>
+                </ul>
+              </div>
+              <div class="tab-panel" data-panel="report">
+                <div class="mini-report">
+                  <h3>今日工作总结</h3>
+                  <p>完成桌面信息读取、数据趋势整理和报告草稿生成。</p>
+                  <div class="mini-grid">
+                    <span>截图</span>
+                    <span>OCR</span>
+                    <span>Excel</span>
+                    <span>Markdown</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-link" data-reveal>
+          <a href="https://github.com/leehu546-cyber/wechat-pc-remote" target="_blank" rel="noreferrer">
+            查看 GitHub 项目
+            <span data-lucide="external-link"></span>
+          </a>
+        </div>
       </section>
 
-      <section class="timeline-section reveal" id="experience">
-        <p class="eyebrow">Experience map</p>
-        <h2>经历路线</h2>
-        <div class="timeline">
+      <section class="section creation-section" id="creation" data-section>
+        <div class="creation-copy" data-reveal>
+          <p class="eyebrow">AI CONTENT CREATION</p>
+          <h2>我也用 AI 做长篇叙事和短剧。</h2>
+          <p>
+            写过 5 部 10 万字级小说，也做过《合租40》AI 短剧。它们训练的是另一种能力：长线结构、人物一致性、节奏控制、分镜拆解和持续改稿。
+          </p>
+        </div>
+
+        <div class="creation-board" data-reveal>
           <article>
-            <time>2024 - 2027</time>
-            <h3>西南大学 · 农村发展硕士</h3>
+            <span data-lucide="book-open"></span>
+            <strong>5 部长篇小说</strong>
+            <p>每部约 10 万字，用 AI 辅助构建世界观、人物线、章节节奏和改稿流程。</p>
           </article>
           <article>
-            <time>2024 - 2025</time>
-            <h3>调研与第三方评估 · 调查员 / 评估员</h3>
+            <span data-lucide="clapperboard"></span>
+            <strong>《合租40》AI 短剧</strong>
+            <p>从创意到剧本、分镜、镜头提示和制作流程，完成一次 AI 短剧项目实践。</p>
           </article>
           <article>
-            <time>2024</time>
-            <h3>网易有道 · 课程顾问</h3>
+            <span data-lucide="pen-tool"></span>
+            <strong>内容 Skill 化</strong>
+            <p>把写作、审稿、分镜、角色一致性检查沉淀成可复用工作流。</p>
           </article>
-          <article>
-            <time>2023 - 2024</time>
-            <h3>四川链家 · 房产销售</h3>
-          </article>
-          <article>
-            <time>2017 - 2019</time>
-            <h3>中国人民解放军 · 战士</h3>
-          </article>
+        </div>
+      </section>
+
+      <section class="section report-section" id="report" data-section>
+        <div class="report-copy" data-reveal>
+          <p class="eyebrow">DATA ANALYSIS & REPORT WRITING</p>
+          <h2>报告 + 数据核对，一张图就能看懂。</h2>
+          <p>
+            以<strong>土壤普查成果报告整改</strong>为例（以下为脱敏演示）：把多源意见整理成对照表，逐项对齐改前改后数据，并建立可复核的截图证据链。
+          </p>
+          <div class="report-skills">
+            <span>对照表</span>
+            <span>跨文档核对</span>
+            <span>页码索引</span>
+            <span>Word 报告</span>
+          </div>
+          <p class="desensitize-note">
+            <span data-lucide="shield-alert"></span>
+            本段所有地名、单位、文件名与数值均已脱敏，仅供能力演示。
+          </p>
+        </div>
+
+        <div class="report-compare" data-reveal aria-label="改前改后对照示意">
+          <div class="compare-flow">
+            <div class="flow-step"><span>1</span><strong>意见</strong><small>专家 / 清单 / 补充</small></div>
+            <i data-lucide="arrow-right"></i>
+            <div class="flow-step"><span>2</span><strong>对照表</strong><small>文件 + 页码 + 原句</small></div>
+            <i data-lucide="arrow-right"></i>
+            <div class="flow-step"><span>3</span><strong>数据核对</strong><small>改前改后口径</small></div>
+            <i data-lucide="arrow-right"></i>
+            <div class="flow-step"><span>4</span><strong>截图</strong><small>整页证据链</small></div>
+          </div>
+
+          <div class="compare-card">
+            <div class="compare-card-head">
+              <strong>对照点 A</strong>
+              <span>历史数据基准年 · 数据报告</span>
+            </div>
+            <div class="compare-split">
+              <div class="compare-side before">
+                <p class="side-label">改前 · p.20</p>
+                <p class="side-quote">……<s>A 年</s>前后的测土配方数据……</p>
+                <p class="side-meta">定位句可 Ctrl+F 复核</p>
+              </div>
+              <div class="compare-arrow" aria-hidden="true">
+                <span data-lucide="arrow-right"></span>
+                <em>A → B</em>
+              </div>
+              <div class="compare-side after">
+                <p class="side-label">改后 · p.31</p>
+                <p class="side-quote">……<mark>B 年</mark>前后的测土配方数据……</p>
+                <p class="side-meta">同一指标，口径已统一</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="compare-card">
+            <div class="compare-card-head">
+              <strong>对照点 B</strong>
+              <span>分类数量 · 多报告交叉</span>
+            </div>
+            <div class="compare-split">
+              <div class="compare-side before">
+                <p class="side-label">改前 · 互相矛盾</p>
+                <ul class="side-list">
+                  <li>报告 1：<s>14 个土种</s></li>
+                  <li>报告 2：<s>16 个土种</s></li>
+                  <li>报告 3：<s>4 类体系</s></li>
+                </ul>
+              </div>
+              <div class="compare-arrow" aria-hidden="true">
+                <span data-lucide="arrow-right"></span>
+                <em>统一</em>
+              </div>
+              <div class="compare-side after">
+                <p class="side-label">改后 · 四报告一致</p>
+                <p class="side-unified">3 / 7 / 10 / 16</p>
+                <p class="side-meta">土类 · 亚类 · 土属 · 土种</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="compare-stats">
+            <div><strong>30+</strong><span>对照点</span></div>
+            <div><strong>70+</strong><span>证据截图</span></div>
+            <div><strong>4</strong><span>类报告</span></div>
+            <div><strong>3</strong><span>类意见源</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section closing-section" data-section>
+        <div data-reveal>
+          <p class="eyebrow">GITHUB READY</p>
+          <h2>这不是模板简历，<br />这是我的 AI 工作能力展厅。</h2>
+          <p>
+            你可以继续往里面加入真实项目截图、小说样章、短剧片段、报告样例和更多 Skill，让页面越来越像你本人。
+          </p>
+          <a class="primary-link" href="https://github.com/leehu546-cyber" target="_blank" rel="noreferrer">
+            访问 GitHub 主页
+            <span data-lucide="github"></span>
+          </a>
         </div>
       </section>
     </main>
 
-    <footer class="contact-bar" id="contact">
-      <button type="button" data-copy="huzhi2024@163.com">复制邮箱</button>
-      <button type="button" data-copy="19982081744">复制电话</button>
-      <a href="assets/hu-zhi-resume.docx" download>下载简历</a>
-      <p id="copy-status"></p>
-    </footer>
-
-    <script src="script.js?v=apple-20260615-1"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

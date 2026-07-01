@@ -1,121 +1,19 @@
-const questSteps = [
-  {
-    title: "沟通访谈：能把人说清、把信息记准",
-    body: "调研、评估、课程顾问和销售经历，都训练了我面对不同人群的倾听、解释和记录能力。",
-    hr: "HR 结论：可支持候选人初筛、面试邀约和员工沟通记录。"
-  },
-  {
-    title: "流程执行：能把细碎任务做完整",
-    body: "问卷发放、回收、核验和样本抽取，让我习惯按流程推进，减少遗漏。",
-    hr: "HR 结论：可支持入职资料核验、招聘台账和培训签到反馈。"
-  },
-  {
-    title: "数据整理：能把信息做成台账",
-    body: "Python、Pandas、SQL、Excel、PostgreSQL、MongoDB 都能支持基础清洗和整理。",
-    hr: "HR 结论：可维护简历筛选表、出勤表、培训反馈表。"
-  },
-  {
-    title: "岗位匹配：招聘支持 / 员工关系 / 培训助理",
-    body: "沟通、流程、数据和纪律性组合在一起，适合从 HR 助理岗位稳定切入。",
-    hr: "30 秒结论：能沟通、能执行、会整理、守流程。"
-  }
-];
+const revealItems = document.querySelectorAll("[data-reveal]");
+const capabilityButtons = document.querySelectorAll(".capability");
+const tabs = document.querySelectorAll(".tab");
+const panels = document.querySelectorAll(".tab-panel");
+const counters = document.querySelectorAll("[data-count]");
+const trendCanvas = document.querySelector("#trendChart");
 
-const runner = document.querySelector("#runner");
-const output = document.querySelector("#quest-output");
-const coinCount = document.querySelector("#coin-count");
-const stepCount = document.querySelector("#step-count");
-const startButton = document.querySelector("#start-run");
-const nextButton = document.querySelector("#next-step");
-const pipeFinish = document.querySelector("#pipe-finish");
-let currentStep = -1;
-let running = false;
-
-function setRunner(stepIndex) {
-  const positions = [14, 34, 54, 74];
-  runner.style.setProperty("--runner-left", `${positions[stepIndex] || 8}%`);
-}
-
-function renderStep(stepIndex) {
-  const step = questSteps[stepIndex];
-  output.innerHTML = `
-    <p>WORLD 1-${stepIndex + 1}</p>
-    <h2>${step.title}</h2>
-    <span>${step.body}</span>
-    <strong>${step.hr}</strong>
-  `;
-  coinCount.textContent = String(stepIndex + 1);
-  stepCount.textContent = String(stepIndex + 1);
-}
-
-function markStep(stepIndex) {
-  document.querySelectorAll(`[data-step="${stepIndex}"]`).forEach((node) => {
-    node.classList.add("is-collected");
-  });
-  document.querySelectorAll(".glass-card").forEach((card, index) => {
-    card.classList.toggle("is-current", index === stepIndex);
-  });
-  if (stepIndex === questSteps.length - 1) {
-    pipeFinish.classList.add("is-open");
-  }
-}
-
-function playStep(stepIndex) {
-  if (running || stepIndex < 0 || stepIndex >= questSteps.length) {
-    return;
-  }
-  running = true;
-  currentStep = stepIndex;
-  startButton.textContent = "继续";
-  setRunner(stepIndex);
-  runner.classList.remove("jump", "bump");
-  window.setTimeout(() => runner.classList.add("jump"), 220);
-  window.setTimeout(() => {
-    markStep(stepIndex);
-    renderStep(stepIndex);
-    runner.classList.add("bump");
-    running = false;
-  }, 620);
-}
-
-function nextStep() {
-  const next = Math.min(currentStep + 1, questSteps.length - 1);
-  playStep(next);
-}
-
-function resetGame() {
-  currentStep = -1;
-  running = false;
-  runner.style.setProperty("--runner-left", "8%");
-  coinCount.textContent = "0";
-  stepCount.textContent = "0";
-  pipeFinish.classList.remove("is-open");
-  document.querySelectorAll("[data-step], .glass-card").forEach((node) => {
-    node.classList.remove("is-collected", "is-current");
+if (window.lucide) {
+  window.lucide.createIcons({
+    attrs: {
+      strokeWidth: 1.8,
+    },
   });
 }
 
-startButton.addEventListener("click", nextStep);
-nextButton.addEventListener("click", nextStep);
-
-document.querySelectorAll("[data-step]").forEach((node) => {
-  node.addEventListener("click", () => playStep(Number(node.dataset.step)));
-});
-
-document.querySelectorAll("[data-copy]").forEach((button) => {
-  button.addEventListener("click", async () => {
-    const value = button.dataset.copy;
-    const status = document.querySelector("#copy-status");
-    try {
-      await navigator.clipboard.writeText(value);
-      status.textContent = "已复制";
-    } catch {
-      status.textContent = value;
-    }
-  });
-});
-
-const observer = new IntersectionObserver(
+const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -123,18 +21,225 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.16 }
+  { threshold: 0.18 }
 );
 
-document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+revealItems.forEach((item) => revealObserver.observe(item));
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter" || event.key === " " || event.key === "ArrowRight") {
-    nextStep();
-  }
-  if (event.key === "r" || event.key === "R") {
-    resetGame();
-  }
+window.setTimeout(() => {
+  revealItems.forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const nearViewport = rect.top < window.innerHeight * 1.15 && rect.bottom > -80;
+    if (nearViewport) item.classList.add("is-visible");
+  });
+}, 250);
+
+let activeCapability = 0;
+const rotateCapability = () => {
+  if (!capabilityButtons.length) return;
+  capabilityButtons.forEach((button) => button.classList.remove("is-active"));
+  capabilityButtons[activeCapability].classList.add("is-active");
+  activeCapability = (activeCapability + 1) % capabilityButtons.length;
+};
+
+let capabilityTimer = capabilityButtons.length ? window.setInterval(rotateCapability, 2400) : null;
+
+capabilityButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    if (capabilityTimer) window.clearInterval(capabilityTimer);
+    activeCapability = index;
+    rotateCapability();
+    capabilityTimer = window.setInterval(rotateCapability, 2400);
+  });
 });
 
-resetGame();
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const target = tab.dataset.tab;
+    tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+    panels.forEach((panel) => {
+      panel.classList.toggle("is-active", panel.dataset.panel === target);
+    });
+  });
+});
+
+const formatNumber = (value) => {
+  return new Intl.NumberFormat("zh-CN").format(value);
+};
+
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.done) return;
+
+      const target = Number(entry.target.dataset.count);
+      const duration = 1200;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        entry.target.textContent = formatNumber(Math.round(target * eased));
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          entry.target.dataset.done = "true";
+        }
+      };
+
+      requestAnimationFrame(tick);
+    });
+  },
+  { threshold: 0.4 }
+);
+
+counters.forEach((counter) => counterObserver.observe(counter));
+
+const drawTrendChart = () => {
+  if (!trendCanvas) return;
+
+  const parent = trendCanvas.parentElement;
+  const rect = parent.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  const width = Math.max(Math.round(rect.width), 320);
+  const height = Math.max(Math.round(rect.height), 220);
+
+  trendCanvas.width = width * dpr;
+  trendCanvas.height = height * dpr;
+  trendCanvas.style.width = `${width}px`;
+  trendCanvas.style.height = `${height}px`;
+
+  const ctx = trendCanvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+
+  const padding = { top: 54, right: 34, bottom: 42, left: 44 };
+  const plotWidth = width - padding.left - padding.right;
+  const plotHeight = height - padding.top - padding.bottom;
+  const gridColor = "rgba(18, 20, 23, 0.08)";
+  const labelColor = "rgba(102, 108, 116, 0.82)";
+
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = gridColor;
+  ctx.font = "12px Inter, sans-serif";
+  ctx.fillStyle = labelColor;
+
+  for (let i = 0; i <= 4; i += 1) {
+    const y = padding.top + (plotHeight / 4) * i;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y);
+    ctx.lineTo(width - padding.right, y);
+    ctx.stroke();
+  }
+
+  const labels = ["05/10", "05/11", "05/12", "05/13", "05/14", "05/15", "05/16"];
+  labels.forEach((label, index) => {
+    const x = padding.left + (plotWidth / (labels.length - 1)) * index;
+    ctx.fillText(label, x - 17, height - 17);
+  });
+
+  const series = [
+    { color: "#1b66f2", values: [126, 108, 145, 151, 170, 143, 158] },
+    { color: "#2f9d55", values: [82, 91, 105, 118, 93, 121, 88] },
+  ];
+
+  const allValues = series.flatMap((item) => item.values);
+  const min = Math.min(...allValues) - 14;
+  const max = Math.max(...allValues) + 16;
+
+  const pointFor = (value, index, count) => {
+    const x = padding.left + (plotWidth / (count - 1)) * index;
+    const y = padding.top + plotHeight - ((value - min) / (max - min)) * plotHeight;
+    return { x, y };
+  };
+
+  series.forEach((item) => {
+    ctx.strokeStyle = item.color;
+    ctx.lineWidth = 3;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.beginPath();
+
+    item.values.forEach((value, index) => {
+      const point = pointFor(value, index, item.values.length);
+      if (index === 0) ctx.moveTo(point.x, point.y);
+      else ctx.lineTo(point.x, point.y);
+    });
+
+    ctx.stroke();
+
+    item.values.forEach((value, index) => {
+      const point = pointFor(value, index, item.values.length);
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = item.color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+  });
+};
+
+drawTrendChart();
+window.addEventListener("resize", drawTrendChart);
+
+const mobileNav = document.querySelector(".mobile-nav");
+const mobileNavLinks = document.querySelectorAll(".mobile-nav a[data-nav]");
+const navSections = [
+  { id: "top", el: document.querySelector("#top") },
+  { id: "identity", el: document.querySelector("#identity") },
+  { id: "system", el: document.querySelector("#system") },
+  { id: "project", el: document.querySelector("#project") },
+  { id: "creation", el: document.querySelector("#creation") },
+  { id: "report", el: document.querySelector("#report") },
+].filter((item) => item.el);
+
+const setActiveMobileNav = (id) => {
+  mobileNavLinks.forEach((link) => {
+    link.classList.toggle("is-active", link.dataset.nav === id);
+  });
+
+  const activeLink = mobileNav?.querySelector(`a[data-nav="${id}"]`);
+  if (activeLink && mobileNav) {
+    const linkLeft = activeLink.offsetLeft;
+    const linkRight = linkLeft + activeLink.offsetWidth;
+    const viewLeft = mobileNav.scrollLeft;
+    const viewRight = viewLeft + mobileNav.clientWidth;
+
+    if (linkLeft < viewLeft + 12 || linkRight > viewRight - 12) {
+      mobileNav.scrollTo({
+        left: linkLeft - mobileNav.clientWidth / 2 + activeLink.offsetWidth / 2,
+        behavior: "smooth",
+      });
+    }
+  }
+};
+
+if (mobileNavLinks.length && navSections.length) {
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (!visible.length) return;
+      setActiveMobileNav(visible[0].target.id || "top");
+    },
+    {
+      rootMargin: "-34% 0px -44% 0px",
+      threshold: [0.12, 0.3, 0.5],
+    }
+  );
+
+  navSections.forEach(({ el }) => navObserver.observe(el));
+
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      window.setTimeout(() => setActiveMobileNav(link.dataset.nav || "top"), 120);
+    });
+  });
+
+  setActiveMobileNav("top");
+}
