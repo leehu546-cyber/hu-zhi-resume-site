@@ -185,17 +185,6 @@ const drawTrendChart = () => {
 drawTrendChart();
 window.addEventListener("resize", drawTrendChart);
 
-const mobileNav = document.querySelector(".mobile-nav");
-const mobileNavLinks = document.querySelectorAll(".mobile-nav a[data-nav]");
-const navSections = [
-  { id: "top", el: document.querySelector("#top") },
-  { id: "identity", el: document.querySelector("#identity") },
-  { id: "system", el: document.querySelector("#system") },
-  { id: "works", el: document.querySelector("#works") },
-  { id: "project", el: document.querySelector("#project") },
-  { id: "creation", el: document.querySelector("#creation") },
-].filter((item) => item.el);
-
 const siteHeader = document.querySelector(".site-header");
 const heroDark = document.querySelector(".hero-dark");
 
@@ -208,52 +197,4 @@ if (siteHeader && heroDark) {
     { threshold: 0.12, rootMargin: "-72px 0px 0px 0px" }
   );
   heroObserver.observe(heroDark);
-}
-
-const setActiveMobileNav = (id) => {
-  mobileNavLinks.forEach((link) => {
-    link.classList.toggle("is-active", link.dataset.nav === id);
-  });
-
-  const activeLink = mobileNav?.querySelector(`a[data-nav="${id}"]`);
-  if (activeLink && mobileNav) {
-    const linkLeft = activeLink.offsetLeft;
-    const linkRight = linkLeft + activeLink.offsetWidth;
-    const viewLeft = mobileNav.scrollLeft;
-    const viewRight = viewLeft + mobileNav.clientWidth;
-
-    if (linkLeft < viewLeft + 12 || linkRight > viewRight - 12) {
-      mobileNav.scrollTo({
-        left: linkLeft - mobileNav.clientWidth / 2 + activeLink.offsetWidth / 2,
-        behavior: "smooth",
-      });
-    }
-  }
-};
-
-if (mobileNavLinks.length && navSections.length) {
-  const navObserver = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-      if (!visible.length) return;
-      setActiveMobileNav(visible[0].target.id || "top");
-    },
-    {
-      rootMargin: "-34% 0px -44% 0px",
-      threshold: [0.12, 0.3, 0.5],
-    }
-  );
-
-  navSections.forEach(({ el }) => navObserver.observe(el));
-
-  mobileNavLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      window.setTimeout(() => setActiveMobileNav(link.dataset.nav || "top"), 120);
-    });
-  });
-
-  setActiveMobileNav("top");
 }

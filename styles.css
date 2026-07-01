@@ -1755,68 +1755,43 @@ h2 {
 @media (max-width: 720px) {
   html {
     scroll-snap-type: none;
-    scroll-padding-top: calc(118px + env(safe-area-inset-top, 0));
+    scroll-padding-top: calc(72px + env(safe-area-inset-top, 0));
   }
 
   .site-header {
+    flex-wrap: wrap;
+    align-items: center;
     width: calc(100% - 24px);
-    height: 56px;
+    height: auto;
+    min-height: 56px;
+    padding: 10px 0 8px;
+    gap: 8px;
   }
 
   .brand {
     font-size: 15px;
+    flex: 1 0 auto;
   }
 
   .desktop-nav {
-    display: none;
-  }
-
-  .mobile-nav {
     display: flex;
-    position: fixed;
-    top: calc(56px + env(safe-area-inset-top, 0));
-    left: 0;
-    right: 0;
-    z-index: 19;
-    gap: 8px;
-    margin: 0;
-    padding: 10px 14px calc(10px + env(safe-area-inset-left, 0));
+    flex: 1 1 100%;
+    gap: 10px;
     overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
+    padding: 2px 0 4px;
     scrollbar-width: none;
-    background: rgba(248, 248, 246, 0.94);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--hairline);
+    -webkit-overflow-scrolling: touch;
   }
 
-  .mobile-nav::-webkit-scrollbar {
+  .desktop-nav::-webkit-scrollbar {
     display: none;
   }
 
-  .mobile-nav a {
+  .desktop-nav a {
     flex: 0 0 auto;
-    scroll-snap-align: start;
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-    padding: 0 16px;
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
-    color: rgba(18, 20, 23, 0.76);
     font-size: 13px;
-    font-weight: 600;
     white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
-    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
-  }
-
-  .mobile-nav a.is-active {
-    border-color: rgba(27, 102, 242, 0.35);
-    background: rgba(27, 102, 242, 0.08);
-    color: var(--blue);
   }
 
   .section {
