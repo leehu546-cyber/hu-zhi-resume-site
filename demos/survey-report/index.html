@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>土壤普查报告整改 · Demo | 胡志</title>
+    <meta name="description" content="脱敏演示：报告撰写与改前改后数据核对。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../demo.css" />
+  </head>
+  <body class="demo-page">
+    <aside class="demo-disclaimer" role="note">
+      <strong>脱敏说明</strong> 本页地名、单位、文件名与数值均为演示样例，仅供能力展示。
+    </aside>
+
+    <header class="site-header">
+      <a class="brand" href="../../index.html">胡志</a>
+      <nav class="desktop-nav" aria-label="Demo 导航">
+        <a href="../../index.html#works">全部作品</a>
+        <a href="https://github.com/leehu546-cyber" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="section demo-shell">
+      <header class="demo-hero" data-reveal>
+        <p class="eyebrow">Demo 01 · 报告与数据</p>
+        <h1>土壤普查成果报告整改对照</h1>
+        <p class="demo-lead">
+          某区验收后需对多份技术报告整改。我将三类意见整理为对照表，核对改前改后数据口径，并输出可复核的截图证据链。
+        </p>
+        <p class="desensitize-note">
+          <span data-lucide="shield-alert"></span>
+          全部数据已脱敏，不代表任何真实委托方材料。
+        </p>
+      </header>
+
+      <div class="report-compare" data-reveal aria-label="改前改后对照">
+        <div class="compare-flow">
+          <div class="flow-step"><span>1</span><strong>意见</strong><small>专家 / 清单 / 补充</small></div>
+          <i data-lucide="arrow-right"></i>
+          <div class="flow-step"><span>2</span><strong>对照表</strong><small>文件 + 页码 + 原句</small></div>
+          <i data-lucide="arrow-right"></i>
+          <div class="flow-step"><span>3</span><strong>数据核对</strong><small>改前改后口径</small></div>
+          <i data-lucide="arrow-right"></i>
+          <div class="flow-step"><span>4</span><strong>截图</strong><small>整页证据链</small></div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-card-head">
+            <strong>对照点 A · 历史基准年</strong>
+            <span>数据报告</span>
+          </div>
+          <div class="compare-split">
+            <div class="compare-side before">
+              <p class="side-label">改前 · p.20</p>
+              <p class="side-quote">……<s>A 年</s>前后的测土配方数据……</p>
+              <p class="side-meta">Word 定位句可 Ctrl+F 复核</p>
+            </div>
+            <div class="compare-arrow" aria-hidden="true">
+              <span data-lucide="arrow-right"></span>
+              <em>A → B</em>
+            </div>
+            <div class="compare-side after">
+              <p class="side-label">改后 · p.31</p>
+              <p class="side-quote">……<mark>B 年</mark>前后的测土配方数据……</p>
+              <p class="side-meta">同一指标，口径已统一</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-card-head">
+            <strong>对照点 B · 分类数量</strong>
+            <span>多报告交叉核对</span>
+          </div>
+          <div class="compare-split">
+            <div class="compare-side before">
+              <p class="side-label">改前 · 互相矛盾</p>
+              <ul class="side-list">
+                <li>报告 1：<s>14 个土种</s></li>
+                <li>报告 2：<s>16 个土种</s></li>
+                <li>报告 3：<s>4 类体系</s></li>
+              </ul>
+            </div>
+            <div class="compare-arrow" aria-hidden="true">
+              <span data-lucide="arrow-right"></span>
+              <em>统一</em>
+            </div>
+            <div class="compare-side after">
+              <p class="side-label">改后 · 四报告一致</p>
+              <p class="side-unified">3 / 7 / 10 / 16</p>
+              <p class="side-meta">土类 · 亚类 · 土属 · 土种</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-stats">
+          <div><strong>30+</strong><span>对照点</span></div>
+          <div><strong>70+</strong><span>证据截图</span></div>
+          <div><strong>4</strong><span>类报告</span></div>
+          <div><strong>3</strong><span>意见源</span></div>
+        </div>
+      </div>
+
+      <footer class="demo-footer" data-reveal>
+        <a class="back-link" href="../../index.html#works">
+          <span data-lucide="arrow-left"></span>
+          返回作品集
+        </a>
+      </footer>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+      if (window.lucide) window.lucide.createIcons({ attrs: { strokeWidth: 1.8 } });
+      document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("is-visible"));
+    </script>
+  </body>
+</html>

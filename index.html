@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>leehu546-cyber | AI Coding Resume</title>
+    <title>胡志 | AI Coding 作品集</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,13 +17,13 @@
   </head>
   <body>
     <header class="site-header" data-reveal>
-      <a class="brand" href="#top">leehu546-cyber</a>
+      <a class="brand" href="#top">胡志</a>
       <nav class="desktop-nav" aria-label="主导航">
         <a href="#identity">特点</a>
         <a href="#system">Skill</a>
-        <a href="#project">项目</a>
+        <a href="#works">作品</a>
+        <a href="#project">微信项目</a>
         <a href="#creation">创作</a>
-        <a href="#report">报告</a>
       </nav>
     </header>
 
@@ -31,32 +31,29 @@
       <a href="#top" data-nav="top">首页</a>
       <a href="#identity" data-nav="identity">特点</a>
       <a href="#system" data-nav="system">Skill</a>
-      <a href="#project" data-nav="project">项目</a>
+      <a href="#works" data-nav="works">作品</a>
+      <a href="#project" data-nav="project">微信</a>
       <a href="#creation" data-nav="creation">创作</a>
-      <a href="#report" data-nav="report">报告</a>
     </nav>
 
     <main id="top">
-      <section class="section hero apple-panel" data-section>
-        <div class="hero-copy" data-reveal>
-          <p class="eyebrow">个人简历 · AI CODING</p>
-          <h1>我不是只会用 AI，<br />我是把 AI 变成工作系统。</h1>
-          <p class="hero-text">
-            一年多 AI Coding 实战，把本地自动化、数据分析、报告撰写、长篇小说和 AI 短剧制作沉淀成一套可复用的技能方法。
+      <section class="section hero-dark apple-panel" id="top" data-section>
+        <div class="hero-lights" aria-hidden="true">
+          <span class="light light-a"></span>
+          <span class="light light-b"></span>
+          <span class="light light-c"></span>
+          <span class="light light-d"></span>
+        </div>
+        <div class="hero-dark-inner" data-reveal>
+          <p class="eyebrow hero-eyebrow">AI CODING · 数据分析 · 报告撰写</p>
+          <h1 class="hero-name">胡志</h1>
+          <p class="hero-tagline">我不是只会用 AI，我是把 AI 变成工作系统。</p>
+          <p class="hero-text hero-text-dark">
+            本地自动化、跨文档数据核对、正式报告与 AI 内容创作——沉淀为可复用的 Skill 与项目 Demo。
           </p>
         </div>
 
-        <figure class="section-illustration hero-illustration" data-reveal>
-          <img
-            src="assets/portfolio-illustrations/01-hero-ai-system.png"
-            alt="橙线风格概念图：小橙把杂乱的线条整理成可执行的工作系统"
-            width="1280"
-            height="720"
-            loading="lazy"
-          />
-        </figure>
-
-        <div class="hero-metrics" data-reveal aria-label="个人亮点">
+        <div class="hero-metrics hero-metrics-dark" data-reveal aria-label="个人亮点">
           <div>
             <strong>1 年+</strong>
             <span>AI Coding 实战</span>
@@ -71,11 +68,11 @@
           </div>
           <div>
             <strong>Skill</strong>
-            <span>把经验沉淀成流程</span>
+            <span>流程可复用</span>
           </div>
         </div>
 
-        <div class="hero-strip" data-reveal>
+        <div class="hero-strip hero-strip-dark" data-reveal>
           <span>AI Coding</span>
           <span>微信控制电脑</span>
           <span>数据分析</span>
@@ -83,10 +80,58 @@
           <span>AI 内容创作</span>
         </div>
 
-        <a class="scroll-cue" href="#identity" aria-label="继续向下">
-          <span>继续向下</span>
+        <a class="scroll-cue scroll-cue-dark" href="#works" aria-label="查看作品">
+          <span>查看作品 Demo</span>
           <i data-lucide="chevron-down"></i>
         </a>
+      </section>
+
+      <section class="section works-section" id="works" data-section>
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow">PORTFOLIO · 能力证据</p>
+          <h2>项目 Demo 入口</h2>
+          <p>每个项目独立页面，后续可持续追加。点击卡片进入完整 Case Study。</p>
+        </div>
+
+        <div class="portfolio-grid" data-reveal>
+          <a class="project-card project-card-featured" href="demos/survey-report/">
+            <div class="project-card-top">
+              <span class="project-id">Demo 01</span>
+              <span class="project-tag">报告 · 数据</span>
+            </div>
+            <h3>土壤普查成果报告整改</h3>
+            <p>多源意见 → 对照表 → 改前改后核对 → 截图证据链（脱敏演示）</p>
+            <div class="project-mini-compare" aria-hidden="true">
+              <span class="mini-before">改前 A 年</span>
+              <span class="mini-arrow">→</span>
+              <span class="mini-after">改后 B 年</span>
+            </div>
+            <ul class="project-stats">
+              <li><strong>30+</strong> 对照点</li>
+              <li><strong>70+</strong> 截图</li>
+            </ul>
+            <span class="project-cta">进入 Demo <i data-lucide="arrow-up-right"></i></span>
+          </a>
+
+          <a class="project-card" href="#project">
+            <div class="project-card-top">
+              <span class="project-id">Demo 02</span>
+              <span class="project-tag">Agent · 自动化</span>
+            </div>
+            <h3>wechat-pc-remote</h3>
+            <p>微信发指令，Agent 选 Skill，Windows 本地执行并回传结果。</p>
+            <span class="project-cta">本页预览 <i data-lucide="arrow-down"></i></span>
+          </a>
+
+          <article class="project-card project-card-soon">
+            <div class="project-card-top">
+              <span class="project-id">Demo 03+</span>
+              <span class="project-tag">即将上线</span>
+            </div>
+            <h3>更多项目</h3>
+            <p>数据分析看板、AI 短剧制作流、Excel 核对工具等 Demo 持续追加中。</p>
+          </article>
+        </div>
       </section>
 
       <section class="section identity-section" id="identity" data-section>
@@ -302,94 +347,6 @@
             <strong>内容 Skill 化</strong>
             <p>把写作、审稿、分镜、角色一致性检查沉淀成可复用工作流。</p>
           </article>
-        </div>
-      </section>
-
-      <section class="section report-section" id="report" data-section>
-        <div class="report-copy" data-reveal>
-          <p class="eyebrow">DATA ANALYSIS & REPORT WRITING</p>
-          <h2>报告 + 数据核对，一张图就能看懂。</h2>
-          <p>
-            以<strong>土壤普查成果报告整改</strong>为例（以下为脱敏演示）：把多源意见整理成对照表，逐项对齐改前改后数据，并建立可复核的截图证据链。
-          </p>
-          <div class="report-skills">
-            <span>对照表</span>
-            <span>跨文档核对</span>
-            <span>页码索引</span>
-            <span>Word 报告</span>
-          </div>
-          <p class="desensitize-note">
-            <span data-lucide="shield-alert"></span>
-            本段所有地名、单位、文件名与数值均已脱敏，仅供能力演示。
-          </p>
-        </div>
-
-        <div class="report-compare" data-reveal aria-label="改前改后对照示意">
-          <div class="compare-flow">
-            <div class="flow-step"><span>1</span><strong>意见</strong><small>专家 / 清单 / 补充</small></div>
-            <i data-lucide="arrow-right"></i>
-            <div class="flow-step"><span>2</span><strong>对照表</strong><small>文件 + 页码 + 原句</small></div>
-            <i data-lucide="arrow-right"></i>
-            <div class="flow-step"><span>3</span><strong>数据核对</strong><small>改前改后口径</small></div>
-            <i data-lucide="arrow-right"></i>
-            <div class="flow-step"><span>4</span><strong>截图</strong><small>整页证据链</small></div>
-          </div>
-
-          <div class="compare-card">
-            <div class="compare-card-head">
-              <strong>对照点 A</strong>
-              <span>历史数据基准年 · 数据报告</span>
-            </div>
-            <div class="compare-split">
-              <div class="compare-side before">
-                <p class="side-label">改前 · p.20</p>
-                <p class="side-quote">……<s>A 年</s>前后的测土配方数据……</p>
-                <p class="side-meta">定位句可 Ctrl+F 复核</p>
-              </div>
-              <div class="compare-arrow" aria-hidden="true">
-                <span data-lucide="arrow-right"></span>
-                <em>A → B</em>
-              </div>
-              <div class="compare-side after">
-                <p class="side-label">改后 · p.31</p>
-                <p class="side-quote">……<mark>B 年</mark>前后的测土配方数据……</p>
-                <p class="side-meta">同一指标，口径已统一</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="compare-card">
-            <div class="compare-card-head">
-              <strong>对照点 B</strong>
-              <span>分类数量 · 多报告交叉</span>
-            </div>
-            <div class="compare-split">
-              <div class="compare-side before">
-                <p class="side-label">改前 · 互相矛盾</p>
-                <ul class="side-list">
-                  <li>报告 1：<s>14 个土种</s></li>
-                  <li>报告 2：<s>16 个土种</s></li>
-                  <li>报告 3：<s>4 类体系</s></li>
-                </ul>
-              </div>
-              <div class="compare-arrow" aria-hidden="true">
-                <span data-lucide="arrow-right"></span>
-                <em>统一</em>
-              </div>
-              <div class="compare-side after">
-                <p class="side-label">改后 · 四报告一致</p>
-                <p class="side-unified">3 / 7 / 10 / 16</p>
-                <p class="side-meta">土类 · 亚类 · 土属 · 土种</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="compare-stats">
-            <div><strong>30+</strong><span>对照点</span></div>
-            <div><strong>70+</strong><span>证据截图</span></div>
-            <div><strong>4</strong><span>类报告</span></div>
-            <div><strong>3</strong><span>类意见源</span></div>
-          </div>
         </div>
       </section>
 

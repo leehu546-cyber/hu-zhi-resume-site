@@ -191,10 +191,24 @@ const navSections = [
   { id: "top", el: document.querySelector("#top") },
   { id: "identity", el: document.querySelector("#identity") },
   { id: "system", el: document.querySelector("#system") },
+  { id: "works", el: document.querySelector("#works") },
   { id: "project", el: document.querySelector("#project") },
   { id: "creation", el: document.querySelector("#creation") },
-  { id: "report", el: document.querySelector("#report") },
 ].filter((item) => item.el);
+
+const siteHeader = document.querySelector(".site-header");
+const heroDark = document.querySelector(".hero-dark");
+
+if (siteHeader && heroDark) {
+  siteHeader.classList.add("on-hero");
+  const heroObserver = new IntersectionObserver(
+    ([entry]) => {
+      siteHeader.classList.toggle("on-hero", entry.isIntersecting);
+    },
+    { threshold: 0.12, rootMargin: "-72px 0px 0px 0px" }
+  );
+  heroObserver.observe(heroDark);
+}
 
 const setActiveMobileNav = (id) => {
   mobileNavLinks.forEach((link) => {

@@ -15,8 +15,11 @@ python -m http.server 8765
 
 | 路径 | 说明 |
 |------|------|
-| `index.html` | 首页 |
-| `assets/` | 插图与项目预览图 |
+| `index.html` | 首页（胡志 · 灯光 Hero + 作品入口网格） |
+| `demos/survey-report/` | Demo 01：土壤普查报告整改（脱敏） |
+| `demos/demo.css` | Demo 子页共用样式 |
+
+新增项目：在 `index.html` 的 `.portfolio-grid` 加卡片，并建 `demos/项目名/index.html`。
 
 ## 关联项目
 

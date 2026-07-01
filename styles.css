@@ -112,6 +112,320 @@ nav a:hover,
   isolation: isolate;
 }
 
+.hero-dark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 34px;
+  min-height: 100vh;
+  text-align: center;
+  color: #f5f5f7;
+  background:
+    radial-gradient(circle at 50% -20%, rgba(10, 132, 255, 0.38), transparent 36rem),
+    radial-gradient(circle at 12% 28%, rgba(255, 45, 85, 0.22), transparent 18rem),
+    radial-gradient(circle at 88% 22%, rgba(121, 40, 202, 0.28), transparent 20rem),
+    radial-gradient(circle at 50% 100%, rgba(0, 223, 216, 0.12), transparent 28rem),
+    linear-gradient(180deg, #000 0%, #06070c 52%, #0e1018 100%);
+  overflow: hidden;
+}
+
+.hero-lights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-lights .light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: lightDrift 14s ease-in-out infinite;
+}
+
+.light-a {
+  width: 320px;
+  height: 320px;
+  left: -80px;
+  top: 10%;
+  background: rgba(10, 132, 255, 0.55);
+}
+
+.light-b {
+  width: 280px;
+  height: 280px;
+  right: -60px;
+  top: 18%;
+  background: rgba(175, 82, 222, 0.45);
+  animation-delay: -4s;
+}
+
+.light-c {
+  width: 240px;
+  height: 240px;
+  left: 38%;
+  bottom: 8%;
+  background: rgba(255, 159, 10, 0.35);
+  animation-delay: -8s;
+}
+
+.light-d {
+  width: 200px;
+  height: 200px;
+  right: 28%;
+  top: 42%;
+  background: rgba(48, 209, 88, 0.28);
+  animation-delay: -11s;
+}
+
+.hero-dark-inner {
+  position: relative;
+  z-index: 2;
+  margin-top: 2vh;
+}
+
+.hero-eyebrow {
+  color: rgba(255, 216, 77, 0.92);
+}
+
+.hero-name {
+  margin: 0 auto 12px;
+  max-width: none;
+  font-size: clamp(88px, 20vw, 220px);
+  line-height: 0.88;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    110deg,
+    #ffffff 0%,
+    #a8c7ff 18%,
+    #c084fc 36%,
+    #fb7185 54%,
+    #fcd34d 72%,
+    #6ee7b7 88%,
+    #ffffff 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nameShimmer 10s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(120, 160, 255, 0.25));
+}
+
+.hero-tagline {
+  margin: 0 auto 16px;
+  max-width: 760px;
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 800;
+  color: rgba(245, 245, 247, 0.92);
+}
+
+.hero-text-dark {
+  color: rgba(245, 245, 247, 0.62);
+}
+
+.hero-metrics-dark {
+  position: relative;
+  z-index: 2;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+}
+
+.hero-metrics-dark div {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.hero-metrics-dark strong {
+  color: #fff;
+}
+
+.hero-metrics-dark span {
+  color: rgba(245, 245, 247, 0.58);
+}
+
+.hero-strip-dark span {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(245, 245, 247, 0.78);
+}
+
+.scroll-cue-dark {
+  position: relative;
+  z-index: 2;
+  color: rgba(245, 245, 247, 0.72);
+}
+
+.site-header.on-hero {
+  color: rgba(245, 245, 247, 0.92);
+}
+
+.site-header.on-hero .desktop-nav a {
+  color: rgba(245, 245, 247, 0.72);
+}
+
+.site-header.on-hero .desktop-nav a:hover {
+  color: #fff;
+}
+
+.works-section {
+  min-height: auto;
+  padding-top: 96px;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: var(--max);
+  margin: 44px auto 0;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  padding: 24px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+a.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(27, 102, 242, 0.35);
+  box-shadow: 0 28px 70px rgba(30, 40, 54, 0.16);
+}
+
+.project-card-featured {
+  border-color: rgba(27, 102, 242, 0.28);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.project-card-soon {
+  opacity: 0.72;
+  border-style: dashed;
+}
+
+.project-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.project-id {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.project-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(18, 20, 23, 0.06);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.project-card h3 {
+  margin: 0 0 12px;
+  max-width: none;
+  font-size: 24px;
+  text-align: left;
+}
+
+.project-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.project-mini-compare {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0 16px;
+  padding: 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mini-before {
+  color: #a33;
+  text-decoration: line-through;
+}
+
+.mini-arrow {
+  color: var(--blue);
+}
+
+.mini-after {
+  color: var(--green);
+}
+
+.project-stats {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.project-stats li {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.project-stats strong {
+  color: var(--ink);
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.project-cta svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes nameShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 220% center;
+  }
+}
+
+@keyframes lightDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, -14px) scale(1.08);
+  }
+}
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -1361,6 +1675,14 @@ h2 {
 }
 
 @media (max-width: 1040px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-card-featured {
+    grid-column: 1 / -1;
+  }
+
   .capability-rail,
   .demo-shell,
   .profile-section,
@@ -1659,8 +1981,12 @@ h2 {
 
   .resume-snapshot,
   .trait-grid,
-  .hero-metrics {
-    grid-template-columns: 1fr 1fr;
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-name {
+    font-size: clamp(72px, 22vw, 120px);
   }
 
   .system-illustration {
