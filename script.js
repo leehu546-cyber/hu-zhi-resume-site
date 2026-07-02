@@ -187,6 +187,8 @@ window.addEventListener("resize", drawTrendChart);
 
 const TYPEWRITER_KEY = "huZhiHeroTyped_v2";
 const WORKS_TYPEWRITER_KEY = "huZhiWorksTyped_v4";
+const IDENTITY_TYPEWRITER_KEY = "huZhiIdentityTyped_v1";
+const SYSTEM_TYPEWRITER_KEY = "huZhiSystemTyped_v1";
 const PAUSE_CHARS = new Set(["，", "。", "、", "；", "：", " ", "·", "—", "–", "-"]);
 
 const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
@@ -309,6 +311,128 @@ const initWorksPageTypewriter = () => {
 };
 
 let worksTypewriterCheck = null;
+
+const showIdentityPageText = () => {
+  const identityInner = document.querySelector("#identity .page-inner--identity");
+  identityInner?.querySelectorAll("[data-identity-typewriter]").forEach((el) => {
+    el.textContent = el.dataset.typeText || "";
+    el.classList.remove("is-typing");
+  });
+  identityInner?.classList.add("is-page-ready");
+};
+
+const runIdentityPageTypewriter = async () => {
+  const identityInner = document.querySelector("#identity .page-inner--identity");
+  const lines = identityInner ? [...identityInner.querySelectorAll("[data-identity-typewriter]")] : [];
+  if (!lines.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const alreadyTyped = sessionStorage.getItem(IDENTITY_TYPEWRITER_KEY) === "1";
+
+  if (reducedMotion || alreadyTyped) {
+    showIdentityPageText();
+    return;
+  }
+
+  lines.forEach((el) => {
+    el.textContent = "";
+  });
+
+  for (const el of lines) {
+    const speed = Number(el.dataset.speed) || 100;
+    await typeLine(el, speed);
+  }
+
+  identityInner?.classList.add("is-page-ready");
+  sessionStorage.setItem(IDENTITY_TYPEWRITER_KEY, "1");
+};
+
+const initIdentityPageTypewriter = () => {
+  const identityPanel = document.getElementById("identity");
+  if (!identityPanel) return null;
+
+  let started = false;
+
+  const maybeStart = () => {
+    if (started) return;
+    const enter = Number.parseFloat(identityPanel.style.getPropertyValue("--panel-enter") || "0");
+    if (enter < 0.78) return;
+    started = true;
+    runIdentityPageTypewriter();
+  };
+
+  if (sessionStorage.getItem(IDENTITY_TYPEWRITER_KEY) === "1") {
+    showIdentityPageText();
+    return maybeStart;
+  }
+
+  window.addEventListener("scroll", maybeStart, { passive: true });
+  window.setTimeout(maybeStart, 500);
+  return maybeStart;
+};
+
+let identityTypewriterCheck = null;
+
+const showSystemPageText = () => {
+  const systemInner = document.querySelector("#system .page-inner--system");
+  systemInner?.querySelectorAll("[data-system-typewriter]").forEach((el) => {
+    el.textContent = el.dataset.typeText || "";
+    el.classList.remove("is-typing");
+  });
+  systemInner?.classList.add("is-page-ready");
+};
+
+const runSystemPageTypewriter = async () => {
+  const systemInner = document.querySelector("#system .page-inner--system");
+  const lines = systemInner ? [...systemInner.querySelectorAll("[data-system-typewriter]")] : [];
+  if (!lines.length) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const alreadyTyped = sessionStorage.getItem(SYSTEM_TYPEWRITER_KEY) === "1";
+
+  if (reducedMotion || alreadyTyped) {
+    showSystemPageText();
+    return;
+  }
+
+  lines.forEach((el) => {
+    el.textContent = "";
+  });
+
+  for (const el of lines) {
+    const speed = Number(el.dataset.speed) || 100;
+    await typeLine(el, speed);
+  }
+
+  systemInner?.classList.add("is-page-ready");
+  sessionStorage.setItem(SYSTEM_TYPEWRITER_KEY, "1");
+};
+
+const initSystemPageTypewriter = () => {
+  const systemPanel = document.getElementById("system");
+  if (!systemPanel) return null;
+
+  let started = false;
+
+  const maybeStart = () => {
+    if (started) return;
+    const enter = Number.parseFloat(systemPanel.style.getPropertyValue("--panel-enter") || "0");
+    if (enter < 0.78) return;
+    started = true;
+    runSystemPageTypewriter();
+  };
+
+  if (sessionStorage.getItem(SYSTEM_TYPEWRITER_KEY) === "1") {
+    showSystemPageText();
+    return maybeStart;
+  }
+
+  window.addEventListener("scroll", maybeStart, { passive: true });
+  window.setTimeout(maybeStart, 500);
+  return maybeStart;
+};
+
+let systemTypewriterCheck = null;
 
 const typeLine = async (el, speed) => {
   const text = el.dataset.typeText || "";
@@ -487,6 +611,8 @@ const initPageScrollSystem = () => {
       panel.style.setProperty("--panel-enter", state.currentEnter.toFixed(4));
     });
     worksTypewriterCheck?.();
+    identityTypewriterCheck?.();
+    systemTypewriterCheck?.();
     window.requestAnimationFrame(applySmoothValues);
   };
 
@@ -546,4 +672,6 @@ initPageScrollSystem();
 initAllPageParallax();
 initMagneticElements();
 worksTypewriterCheck = initWorksPageTypewriter();
+identityTypewriterCheck = initIdentityPageTypewriter();
+systemTypewriterCheck = initSystemPageTypewriter();
 runHeroTypewriter();

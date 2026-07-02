@@ -471,6 +471,176 @@ a.demo-link-item:hover {
   pointer-events: none;
 }
 
+.page-inner--identity {
+  text-align: left;
+  width: 100%;
+}
+
+.identity-eyebrow {
+  margin: 0 0 14px;
+  color: rgba(255, 216, 77, 0.9);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.identity-title {
+  margin: 0 0 26px;
+  max-width: none;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.identity-title--lit {
+  background: linear-gradient(
+    108deg,
+    #f5f5f7 0%,
+    #fde047 22%,
+    #f9a8d4 44%,
+    #c4b5fd 66%,
+    #7dd3fc 82%,
+    #f5f5f7 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: identityTitleShimmer 7.2s ease-in-out infinite;
+}
+
+.identity-skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.identity-skill-list li {
+  padding: 12px 16px 12px 18px;
+  border-left: 2px solid rgba(196, 181, 253, 0.55);
+  border-radius: 0 10px 10px 0;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 245, 247, 0.88);
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 600;
+  line-height: 1.55;
+  min-height: 1.2em;
+}
+
+[data-identity-typewriter] {
+  min-height: 1.15em;
+}
+
+[data-identity-typewriter].is-typing {
+  display: block;
+}
+
+.page-inner--identity .typewriter-cursor {
+  color: rgba(196, 181, 253, 0.95);
+  text-shadow: 0 0 12px rgba(196, 181, 253, 0.45);
+}
+
+.page-inner--system {
+  text-align: left;
+  width: 100%;
+}
+
+.system-eyebrow {
+  margin: 0 0 14px;
+  color: rgba(126, 182, 255, 0.92);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.system-title {
+  margin: 0 0 26px;
+  max-width: none;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.system-title--lit {
+  background: linear-gradient(
+    108deg,
+    #f5f5f7 0%,
+    #6ee7b7 20%,
+    #7eb6ff 40%,
+    #38bdf8 60%,
+    #a5b4fc 80%,
+    #f5f5f7 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: systemTitleShimmer 7.2s ease-in-out infinite;
+}
+
+.system-skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.system-skill-list li {
+  padding: 12px 16px 12px 18px;
+  border-left: 2px solid rgba(110, 231, 183, 0.55);
+  border-radius: 0 10px 10px 0;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 245, 247, 0.88);
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 600;
+  line-height: 1.55;
+  min-height: 1.2em;
+}
+
+[data-system-typewriter] {
+  min-height: 1.15em;
+}
+
+[data-system-typewriter].is-typing {
+  display: block;
+}
+
+.page-inner--system .typewriter-cursor {
+  color: rgba(110, 231, 183, 0.95);
+  text-shadow: 0 0 12px rgba(110, 231, 183, 0.45);
+}
+
+@keyframes identityTitleShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+@keyframes systemTitleShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
 .portfolio-grid--page .project-card {
   min-height: 240px;
   padding: 18px;
@@ -889,6 +1059,22 @@ a.demo-link-item:hover {
     background-clip: unset;
     color: #f5f5f7;
     transform: none;
+  }
+
+  .identity-title--lit {
+    animation: none;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #f5f5f7;
+  }
+
+  .system-title--lit {
+    animation: none;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #f5f5f7;
   }
 }
 
@@ -2961,6 +3147,14 @@ h2 {
 }
 
 .page-home h1.hero-name--lit {
+  color: transparent;
+}
+
+.page-home h2.identity-title--lit {
+  color: transparent;
+}
+
+.page-home h2.system-title--lit {
   color: transparent;
 }
 
