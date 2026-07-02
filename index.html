@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=page-unified-3" />
+    <link rel="stylesheet" href="styles.css?v=page-unified-7" />
   </head>
   <body class="page-home">
     <noscript>
@@ -41,19 +41,13 @@
                 data-type-text="AI CODING · 数据分析 · 报告撰写"
                 data-speed="72"
               >AI CODING · 数据分析 · 报告撰写</p>
-              <h1 class="hero-name" data-typewriter data-type-text="胡志" data-speed="105">胡志</h1>
+              <h1 class="hero-name hero-name--lit" data-typewriter data-type-text="胡志" data-speed="105">胡志</h1>
               <p
                 class="hero-tagline"
                 data-typewriter
                 data-type-text="我不是只会用 AI，我是把 AI 变成工作系统。"
                 data-speed="62"
               >我不是只会用 AI，我是把 AI 变成工作系统。</p>
-              <p
-                class="hero-text hero-text-dark"
-                data-typewriter
-                data-type-text="本地自动化、跨文档数据核对、正式报告与 AI 内容创作——沉淀为可复用的 Skill 与项目 Demo。"
-                data-speed="52"
-              >本地自动化、跨文档数据核对、正式报告与 AI 内容创作——沉淀为可复用的 Skill 与项目 Demo。</p>
             </div>
             <div class="hero-after-type">
               <div class="hero-strip hero-strip-dark">
@@ -109,17 +103,18 @@
                 >Demo 01 · 土壤报告的撰写</a>
                 <a
                   class="demo-link-item"
-                  href="#project"
+                  href="demos/wechat-pc-remote/"
                   data-page-typewriter
                   data-type-text="Demo 02 · 微信远程控制电脑"
                   data-speed="36"
                 >Demo 02 · 微信远程控制电脑</a>
-                <span
-                  class="demo-link-item demo-link-soon"
+                <a
+                  class="demo-link-item"
+                  href="demos/ai-creation/"
                   data-page-typewriter
-                  data-type-text="Demo 03 · 更多项目筹备中"
+                  data-type-text="Demo 03 · AI 内容创作"
                   data-speed="36"
-                >Demo 03 · 更多项目筹备中</span>
+                >Demo 03 · AI 内容创作</a>
               </nav>
             </div>
           </div>
@@ -226,135 +221,6 @@
               </div>
             </div>
           </div>
-          <a class="scroll-cue scroll-cue-dark scroll-cue-pill page-scroll-cta is-visible" href="#project">
-            <span>下一屏 · 代表项目</span>
-            <i data-lucide="chevron-down"></i>
-          </a>
-          <div class="hero-scroll-progress" aria-hidden="true"><span class="hero-scroll-progress-fill"></span></div>
-          <div class="hero-bridge" aria-hidden="true">
-            <div class="hero-bridge-line"></div>
-            <div class="hero-bridge-glow"></div>
-            <div class="hero-bridge-vignette"></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="hero-scroll-stage" data-page-stage>
-        <section class="hero-dark apple-panel page-panel" id="project" data-section>
-          <div class="hero-lights" aria-hidden="true">
-            <span class="light light-a"></span>
-            <span class="light light-b"></span>
-            <span class="light light-c"></span>
-            <span class="light light-d"></span>
-          </div>
-          <div class="hero-center hero-center--page hero-center--tall">
-            <div class="hero-dark-inner page-inner">
-              <div class="section-heading">
-                <p class="eyebrow">代表项目 · 能力证据</p>
-                <h2 class="page-title">wechat-pc-remote</h2>
-                <p class="page-lead">微信入口 + Agent + Skill + PowerShell，串成真实可用的本地自动化系统。</p>
-              </div>
-              <div class="demo-shell demo-shell--page">
-                <div class="demo-column commands">
-                  <div class="column-title"><span>1</span><strong>微信指令</strong></div>
-                  <div class="wechat-panel" aria-label="微信命令示例">
-                    <div class="bubble incoming">帮我看一下桌面，并总结今天的待办事项</div>
-                    <div class="bubble outgoing">打开 C:\Projects 文件夹</div>
-                    <div class="bubble incoming">查找过去 7 天的销售数据，生成趋势图</div>
-                    <div class="bubble outgoing">把这份数据整理成表格并导出 Excel</div>
-                  </div>
-                </div>
-                <div class="demo-column reasoning">
-                  <div class="column-title"><span>2</span><strong>Agent 推理</strong></div>
-                  <ol class="timeline" aria-label="Agent 执行过程">
-                    <li class="is-done"><b>理解任务</b><small>识别意图：查看桌面并总结待办</small></li>
-                    <li class="is-done"><b>选择技能</b><small>调用截图、OCR、文件和报告 Skill</small></li>
-                    <li class="is-done"><b>执行动作</b><small>PowerShell 脚本完成本地操作</small></li>
-                    <li class="is-current"><b>生成回复</b><small>整理成用户能直接看的中文回复</small></li>
-                  </ol>
-                </div>
-                <div class="demo-column output">
-                  <div class="column-title"><span>3</span><strong>Windows 输出</strong></div>
-                  <div class="output-panel">
-                    <div class="tabs" role="tablist" aria-label="输出类型">
-                      <button class="tab is-active" data-tab="screenshot" role="tab">截图</button>
-                      <button class="tab" data-tab="ocr" role="tab">OCR 文本</button>
-                      <button class="tab" data-tab="report" role="tab">报告</button>
-                    </div>
-                    <div class="tab-panel is-active" data-panel="screenshot">
-                      <img src="assets/windows-output.png" alt="Windows 自动化输出预览" />
-                    </div>
-                    <div class="tab-panel" data-panel="ocr">
-                      <ul class="result-list">
-                        <li>桌面包含项目评审材料、销售数据和今日总结草稿。</li>
-                        <li>最新文件：sales_trend_7days.xlsx。</li>
-                        <li>需要跟进：团队周会 15:00，报告初稿校对。</li>
-                      </ul>
-                    </div>
-                    <div class="tab-panel" data-panel="report">
-                      <div class="mini-report">
-                        <h3>今日工作总结</h3>
-                        <p>完成桌面读取、数据趋势整理和报告草稿生成。</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="project-link">
-                <a href="https://github.com/leehu546-cyber/wechat-pc-remote" target="_blank" rel="noreferrer">
-                  查看 GitHub 项目
-                  <span data-lucide="external-link"></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <a class="scroll-cue scroll-cue-dark scroll-cue-pill page-scroll-cta is-visible" href="#creation">
-            <span>下一屏 · AI 创作</span>
-            <i data-lucide="chevron-down"></i>
-          </a>
-          <div class="hero-scroll-progress" aria-hidden="true"><span class="hero-scroll-progress-fill"></span></div>
-          <div class="hero-bridge" aria-hidden="true">
-            <div class="hero-bridge-line"></div>
-            <div class="hero-bridge-glow"></div>
-            <div class="hero-bridge-vignette"></div>
-          </div>
-        </section>
-      </div>
-
-      <div class="hero-scroll-stage" data-page-stage>
-        <section class="hero-dark apple-panel page-panel" id="creation" data-section>
-          <div class="hero-lights" aria-hidden="true">
-            <span class="light light-a"></span>
-            <span class="light light-b"></span>
-            <span class="light light-c"></span>
-            <span class="light light-d"></span>
-          </div>
-          <div class="hero-center hero-center--page">
-            <div class="hero-dark-inner page-inner">
-              <div class="creation-copy">
-                <p class="eyebrow">AI CONTENT CREATION</p>
-                <h2 class="page-title">长篇叙事与 AI 短剧。</h2>
-                <p class="page-lead">结构、人物一致性、节奏控制、分镜拆解和持续改稿。</p>
-              </div>
-              <div class="creation-board creation-board--page">
-                <article>
-                  <span data-lucide="book-open"></span>
-                  <strong>5 部长篇小说</strong>
-                  <p>每部约 10 万字，AI 辅助世界观、人物线与改稿流程。</p>
-                </article>
-                <article>
-                  <span data-lucide="clapperboard"></span>
-                  <strong>《合租40》AI 短剧</strong>
-                  <p>从创意到剧本、分镜、镜头提示和制作流程。</p>
-                </article>
-                <article>
-                  <span data-lucide="pen-tool"></span>
-                  <strong>内容 Skill 化</strong>
-                  <p>写作、审稿、分镜、角色一致性检查沉淀为工作流。</p>
-                </article>
-              </div>
-            </div>
-          </div>
           <a class="scroll-cue scroll-cue-dark scroll-cue-pill page-scroll-cta is-visible" href="#closing">
             <span>下一屏 · GitHub</span>
             <i data-lucide="chevron-down"></i>
@@ -394,6 +260,6 @@
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-    <script src="script.js?v=page-unified-3"></script>
+    <script src="script.js?v=page-unified-5"></script>
   </body>
 </html>

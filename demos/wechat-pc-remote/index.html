@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>微信远程控制电脑 · Demo | 胡志</title>
+    <meta name="description" content="微信发指令，Agent 选 Skill，Windows 本地执行并回传结果。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../demo.css" />
+    <link rel="stylesheet" href="../demo-dark.css" />
+  </head>
+  <body class="page-home demo-page-dark">
+    <div class="demo-page-wrap">
+      <div class="demo-page-lights hero-lights" aria-hidden="true">
+        <span class="light light-a"></span>
+        <span class="light light-b"></span>
+        <span class="light light-c"></span>
+        <span class="light light-d"></span>
+      </div>
+
+      <a class="demo-back-pill scroll-cue scroll-cue-dark scroll-cue-pill" href="../../index.html#works">
+        <span data-lucide="arrow-left"></span>
+        <span>返回作品集</span>
+      </a>
+
+      <main class="demo-main">
+        <header class="demo-hero" data-reveal>
+          <p class="eyebrow">Demo 02 · Agent · 自动化</p>
+          <h1>微信远程控制电脑</h1>
+          <p class="demo-lead">
+            用手机微信发指令，Agent 理解任务、选择 Skill，通过 PowerShell 在 Windows 本地执行，并把截图、OCR 或报告回传给你。
+          </p>
+        </header>
+
+        <div class="wechat-demo-grid" data-reveal>
+          <div class="demo-column commands">
+            <div class="column-title"><span>1</span><strong>微信指令</strong></div>
+            <div class="wechat-panel" aria-label="微信命令示例">
+              <div class="bubble incoming">帮我看一下桌面，并总结今天的待办事项</div>
+              <div class="bubble outgoing">打开 C:\Projects 文件夹</div>
+              <div class="bubble incoming">查找过去 7 天的销售数据，生成趋势图</div>
+              <div class="bubble outgoing">把这份数据整理成表格并导出 Excel</div>
+            </div>
+          </div>
+          <div class="demo-column reasoning">
+            <div class="column-title"><span>2</span><strong>Agent 推理</strong></div>
+            <ol class="timeline" aria-label="Agent 执行过程">
+              <li class="is-done"><b>理解任务</b><small>识别意图：查看桌面并总结待办</small></li>
+              <li class="is-done"><b>选择技能</b><small>调用截图、OCR、文件和报告 Skill</small></li>
+              <li class="is-done"><b>执行动作</b><small>PowerShell 脚本完成本地操作</small></li>
+              <li class="is-current"><b>生成回复</b><small>整理成用户能直接看的中文回复</small></li>
+            </ol>
+          </div>
+          <div class="demo-column output">
+            <div class="column-title"><span>3</span><strong>Windows 输出</strong></div>
+            <div class="output-panel">
+              <div class="tabs" role="tablist" aria-label="输出类型">
+                <button class="tab is-active" data-tab="screenshot" role="tab">截图</button>
+                <button class="tab" data-tab="ocr" role="tab">OCR 文本</button>
+                <button class="tab" data-tab="report" role="tab">报告</button>
+              </div>
+              <div class="tab-panel is-active" data-panel="screenshot">
+                <img src="../../assets/windows-output.png" alt="Windows 自动化输出预览" />
+              </div>
+              <div class="tab-panel" data-panel="ocr">
+                <ul class="result-list">
+                  <li>桌面包含项目评审材料、销售数据和今日总结草稿。</li>
+                  <li>最新文件：sales_trend_7days.xlsx。</li>
+                  <li>需要跟进：团队周会 15:00，报告初稿校对。</li>
+                </ul>
+              </div>
+              <div class="tab-panel" data-panel="report">
+                <div class="mini-report">
+                  <h3>今日工作总结</h3>
+                  <p>完成桌面读取、数据趋势整理和报告草稿生成。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="demo-footer" data-reveal>
+          <a class="back-link" href="../../index.html#works">
+            <span data-lucide="arrow-left"></span>
+            返回作品集
+          </a>
+          <a class="primary-link" href="https://github.com/leehu546-cyber/wechat-pc-remote" target="_blank" rel="noreferrer">
+            查看 GitHub 项目
+            <span data-lucide="external-link"></span>
+          </a>
+        </footer>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="../demo.js"></script>
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const panels = document.querySelectorAll(".tab-panel");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.dataset.tab;
+          tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+          panels.forEach((panel) => {
+            panel.classList.toggle("is-active", panel.dataset.panel === target);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

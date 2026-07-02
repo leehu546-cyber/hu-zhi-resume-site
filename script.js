@@ -186,7 +186,7 @@ drawTrendChart();
 window.addEventListener("resize", drawTrendChart);
 
 const TYPEWRITER_KEY = "huZhiHeroTyped_v2";
-const WORKS_TYPEWRITER_KEY = "huZhiWorksTyped_v3";
+const WORKS_TYPEWRITER_KEY = "huZhiWorksTyped_v4";
 const PAUSE_CHARS = new Set(["，", "。", "、", "；", "：", " ", "·", "—", "–", "-"]);
 
 const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));

@@ -559,28 +559,43 @@ a.demo-link-item:hover {
 }
 
 .hero-name {
+  position: relative;
+  z-index: 1;
   margin: 0 auto 12px;
   max-width: none;
   font-size: clamp(88px, 20vw, 220px);
   line-height: 0.88;
   font-weight: 900;
   letter-spacing: -0.02em;
+}
+
+/* 字内五彩渐变 + 律动（无外圈光晕） */
+.hero-name--lit {
   background: linear-gradient(
-    110deg,
+    105deg,
     #ffffff 0%,
-    #a8c7ff 18%,
-    #c084fc 36%,
-    #fb7185 54%,
-    #fcd34d 72%,
-    #6ee7b7 88%,
+    #93c5fd 11%,
+    #c4b5fd 24%,
+    #f9a8d4 37%,
+    #fde047 50%,
+    #6ee7b7 64%,
+    #7dd3fc 78%,
     #ffffff 100%
   );
-  background-size: 220% auto;
+  background-size: 280% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: nameShimmer 10s linear infinite;
-  filter: drop-shadow(0 0 40px rgba(120, 160, 255, 0.25));
+  animation:
+    nameShimmer 5.6s ease-in-out infinite,
+    nameLitBreath 4.2s ease-in-out infinite;
+  will-change: background-position, transform;
+}
+
+.hero-name--lit.is-typing {
+  animation:
+    nameShimmer 5.6s ease-in-out infinite,
+    nameLitBreath 4.2s ease-in-out infinite;
 }
 
 .hero-tagline {
@@ -616,7 +631,6 @@ a.demo-link-item:hover {
 
 .hero-name .typewriter-cursor {
   font-size: 0.92em;
-  filter: drop-shadow(0 0 12px rgba(255, 216, 77, 0.45));
 }
 
 .hero-after-type {
@@ -866,6 +880,15 @@ a.demo-link-item:hover {
   .typewriter-cursor,
   .typewriter-page-cursor {
     display: none !important;
+  }
+
+  .hero-name--lit {
+    animation: none;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #f5f5f7;
+    transform: none;
   }
 }
 
@@ -1133,8 +1156,23 @@ a.project-card:hover {
   0% {
     background-position: 0% center;
   }
+  50% {
+    background-position: 100% center;
+  }
   100% {
-    background-position: 220% center;
+    background-position: 0% center;
+  }
+}
+
+@keyframes nameLitBreath {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+    letter-spacing: -0.02em;
+  }
+  50% {
+    transform: scale(1.022) translateY(-4px);
+    letter-spacing: 0.02em;
   }
 }
 
@@ -2920,6 +2958,10 @@ h2 {
 .page-home h2,
 .page-home h3 {
   color: #f5f5f7;
+}
+
+.page-home h1.hero-name--lit {
+  color: transparent;
 }
 
 .page-home .eyebrow {
